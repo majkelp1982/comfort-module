@@ -1,11 +1,15 @@
 package pl.smarthouse.weathermodule.configurations;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import pl.smarthouse.smartmodule.model.actors.Actor;
 import pl.smarthouse.smartmodule.model.actors.ActorMap;
 import pl.smarthouse.smartmodule.model.actors.BME280.BME280;
 import pl.smarthouse.smartmodule.model.actors.SDS011.SDS011;
 import pl.smarthouse.smartmodule.model.types.ModuleType;
+import pl.smarthouse.smartmodule.services.ModuleService;
+
+import javax.annotation.PostConstruct;
 
 @Configuration
 public class ModuleConfig {
@@ -17,15 +21,19 @@ public class ModuleConfig {
   private static final String MAC_ADDRESS = "XX:XX:BF:4D:77:C8";
 
   pl.smarthouse.smartmodule.model.configuration.Configuration configuration;
+  @Autowired ModuleService moduleService;
 
   public ModuleConfig() {
     configuration =
         new pl.smarthouse.smartmodule.model.configuration.Configuration(
             ModuleType.WEATHER, VERSION, MAC_ADDRESS, createActors());
+    // FIXME temporary url to test controller
+    configuration.setBaseUrl("localhost:8081");
   }
 
-  public pl.smarthouse.smartmodule.model.configuration.Configuration getConfiguration() {
-    return configuration;
+  @PostConstruct
+  public void postConstruct() {
+    moduleService.setConfiguration(configuration);
   }
 
   private ActorMap createActors() {
