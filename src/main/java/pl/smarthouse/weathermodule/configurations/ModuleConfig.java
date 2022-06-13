@@ -7,6 +7,7 @@ import pl.smarthouse.smartmodule.model.actors.ActorMap;
 import pl.smarthouse.smartmodule.model.actors.BME280.BME280;
 import pl.smarthouse.smartmodule.model.actors.SDS011.SDS011;
 import pl.smarthouse.smartmodule.model.types.ModuleType;
+import pl.smarthouse.smartmodule.services.ManagerService;
 import pl.smarthouse.smartmodule.services.ModuleService;
 
 import javax.annotation.PostConstruct;
@@ -22,23 +23,23 @@ public class ModuleConfig {
 
   pl.smarthouse.smartmodule.model.configuration.Configuration configuration;
   @Autowired ModuleService moduleService;
+  @Autowired ManagerService managerService;
 
   public ModuleConfig() {
     configuration =
         new pl.smarthouse.smartmodule.model.configuration.Configuration(
             ModuleType.WEATHER, VERSION, MAC_ADDRESS, createActors());
-    // FIXME temporary url to test controller
-    configuration.setBaseUrl("localhost:8081");
   }
 
   @PostConstruct
   public void postConstruct() {
     moduleService.setConfiguration(configuration);
+    managerService.setConfiguration(configuration);
   }
 
   private ActorMap createActors() {
     final ActorMap actorMap = new ActorMap();
-    actorMap.putActor(new BME280(BME280));
+    actorMap.putActor(new BME280(BME280, 99));
     actorMap.putActor(new SDS011(SDS011));
     return actorMap;
   }
