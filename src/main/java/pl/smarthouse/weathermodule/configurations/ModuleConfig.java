@@ -19,7 +19,7 @@ public class ModuleConfig {
   public static final String SDS011 = "sds011";
   // Module specific
   private static final String VERSION = "2022-04-09.00";
-  private static final String MAC_ADDRESS = "XX:XX:BF:4D:77:C8";
+  private static final String MAC_ADDRESS = "XX:XX:XX:XX:XX:XX";
 
   pl.smarthouse.smartmodule.model.configuration.Configuration configuration;
   @Autowired ModuleService moduleService;
