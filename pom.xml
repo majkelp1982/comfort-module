@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.6.1</version>
+		<version>2.7.6</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>pl.smarthouse</groupId>
-	<artifactId>weather-module</artifactId>
+	<artifactId>comfort-module</artifactId>
 	<version>1.0</version>
-	<name>weather-module</name>
-	<description>Weather module to control outside environment</description>
+	<name>comfort-module</name>
+	<description>Comfort module to control zone temp, humidity and pressure inside house</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
@@ -44,14 +44,14 @@
 		<dependency>
 			<groupId>pl.smarthouse</groupId>
 			<artifactId>smart-module</artifactId>
-			<version>3.0</version>
+			<version>3.1</version>
 		</dependency>
 
 		<!--        Module manager-->
 		<dependency>
 			<groupId>pl.smarthouse</groupId>
 			<artifactId>module-manager</artifactId>
-			<version>3.0</version>
+			<version>3.1</version>
 			<scope>compile</scope>
 		</dependency>
 		<!--        Module manager-->
