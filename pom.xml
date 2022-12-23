@@ -8,14 +8,16 @@
 		<version>2.7.6</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+	<properties>
+		<java.version>11</java.version>
+		<smart.version>3.1</smart.version>
+	</properties>
+
 	<groupId>pl.smarthouse</groupId>
 	<artifactId>comfort-module</artifactId>
 	<version>1.0</version>
 	<name>comfort-module</name>
 	<description>Comfort module to control zone temp, humidity and pressure inside house</description>
-	<properties>
-		<java.version>11</java.version>
-	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -44,18 +46,8 @@
 		<dependency>
 			<groupId>pl.smarthouse</groupId>
 			<artifactId>smart-module</artifactId>
-			<version>3.1</version>
+			<version>${smart.version}</version>
 		</dependency>
-
-		<!--        Module manager-->
-		<dependency>
-			<groupId>pl.smarthouse</groupId>
-			<artifactId>module-manager</artifactId>
-			<version>3.1</version>
-			<scope>compile</scope>
-		</dependency>
-		<!--        Module manager-->
-
 	</dependencies>
 
 	<build>

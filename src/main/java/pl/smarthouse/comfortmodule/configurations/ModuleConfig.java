@@ -19,7 +19,7 @@ public class ModuleConfig {
   // Actors
   public static final String BME280 = "bme280";
   // Module specific
-  private static final String FIRMWARE = "20221210.21";
+  private static final String FIRMWARE = "20221219.00";
   private static final String VERSION = "20221215.21";
   private final pl.smarthouse.smartmodule.model.configuration.Configuration configuration;
   @Autowired ModuleService moduleService;
