@@ -7,17 +7,17 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
-import pl.smarthouse.comfortmodule.configurations.ModuleConfig;
-import pl.smarthouse.smartmodule.model.actors.typelibs.BME280.BME280;
+import pl.smarthouse.comfortmodule.configurations.Esp32ModuleConfig;
+import pl.smarthouse.smartmodule.model.actors.type.bme280.Bme280;
 import reactor.core.publisher.Mono;
 
 @Service
 @RequiredArgsConstructor
 public class ExternalModuleService {
   private final WebClient externalModuleWebClient;
-  private final ModuleConfig moduleConfig;
+  private final Esp32ModuleConfig esp32ModuleConfig;
 
-  public Mono<String> sendBME280DataToExternalModule(final BME280 bme280) {
+  public Mono<String> sendBME280DataToExternalModule(final Bme280 bme280) {
     return externalModuleWebClient
         .post()
         .uri("/action")
@@ -33,10 +33,10 @@ public class ExternalModuleService {
             });
   }
 
-  private String getCommand(final BME280 bme280) {
+  private String getCommand(final Bme280 bme280) {
     final ObjectMapper mapper = new ObjectMapper();
     final ObjectNode node = mapper.createObjectNode();
-    node.put("zoneNumber", moduleConfig.getComfortZone().getZoneNumber());
+    node.put("zoneNumber", esp32ModuleConfig.getComfortZone().getZoneNumber());
     node.put("temperature", Math.round((bme280.getResponse().getTemperature()) * 10.0) / 10.0);
     node.put("humidity", bme280.getResponse().getHumidity());
     String result = null;

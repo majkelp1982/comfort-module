@@ -1,33 +1,32 @@
 package pl.smarthouse.comfortmodule.configurations;
 
+import static pl.smarthouse.comfortmodule.properties.ActorProperties.BME280;
+import static pl.smarthouse.comfortmodule.properties.ActorProperties.BME280_PIN;
+import static pl.smarthouse.comfortmodule.properties.Esp32ModuleProperties.FIRMWARE;
+import static pl.smarthouse.comfortmodule.properties.Esp32ModuleProperties.VERSION;
+
+import javax.annotation.PostConstruct;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.context.annotation.Configuration;
 import pl.smarthouse.comfortmodule.enums.ComfortZone;
-import pl.smarthouse.smartmodule.model.actors.actor.Actor;
 import pl.smarthouse.smartmodule.model.actors.actor.ActorMap;
-import pl.smarthouse.smartmodule.model.actors.typelibs.BME280.BME280;
+import pl.smarthouse.smartmodule.model.actors.type.bme280.Bme280;
 import pl.smarthouse.smartmodule.services.ManagerService;
 import pl.smarthouse.smartmodule.services.ModuleService;
 
-import javax.annotation.PostConstruct;
-
 @Configuration
 @Getter
-public class ModuleConfig {
-  // Actors
-  public static final String BME280 = "bme280";
+public class Esp32ModuleConfig {
   // Module specific
-  private static final String FIRMWARE = "20221219.00";
-  private static final String VERSION = "20221215.21";
   private final pl.smarthouse.smartmodule.model.configuration.Configuration configuration;
   @Autowired ModuleService moduleService;
   @Autowired ManagerService managerService;
   private String macAddress;
   private ComfortZone comfortZone;
 
-  public ModuleConfig(final ApplicationArguments applicationArguments) {
+  public Esp32ModuleConfig(final ApplicationArguments applicationArguments) {
     checkApplicationArguments(applicationArguments);
     configuration =
         new pl.smarthouse.smartmodule.model.configuration.Configuration(
@@ -51,11 +50,7 @@ public class ModuleConfig {
 
   private ActorMap createActors() {
     final ActorMap actorMap = new ActorMap();
-    actorMap.putActor(new BME280(BME280, 4));
+    actorMap.putActor(new Bme280(BME280, BME280_PIN));
     return actorMap;
-  }
-
-  public Actor getActor(final String name) {
-    return configuration.getActorMap().getActor(name);
   }
 }
