@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.context.annotation.Configuration;
 import pl.smarthouse.comfortmodule.enums.ComfortZone;
+import pl.smarthouse.sharedobjects.enums.ZoneName;
 import pl.smarthouse.smartmodule.model.actors.actor.ActorMap;
 import pl.smarthouse.smartmodule.model.actors.type.bme280.Bme280;
 import pl.smarthouse.smartmodule.services.ManagerService;
@@ -30,7 +31,7 @@ public class Esp32ModuleConfig {
     checkApplicationArguments(applicationArguments);
     configuration =
         new pl.smarthouse.smartmodule.model.configuration.Configuration(
-            comfortZone.toString(), FIRMWARE, VERSION, macAddress, createActors());
+            comfortZone.getComfortZoneName(), FIRMWARE, VERSION, macAddress, createActors());
   }
 
   @PostConstruct
@@ -44,7 +45,8 @@ public class Esp32ModuleConfig {
       throw new IllegalArgumentException(
           "Should be 2 arguments. First module type, second mac address");
     }
-    comfortZone = ComfortZone.valueOf(applicationArguments.getSourceArgs()[0]);
+    final ZoneName zoneName = ZoneName.valueOf(applicationArguments.getSourceArgs()[0]);
+    comfortZone = new ComfortZone(zoneName);
     macAddress = applicationArguments.getSourceArgs()[1];
   }
 

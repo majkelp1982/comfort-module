@@ -1,21 +1,39 @@
 package pl.smarthouse.comfortmodule.enums;
 
-public enum ComfortZone {
-  COMFORT_SALON(0),
-  COMFORT_LAZ_DOL(1),
-  COMFORT_PRALNIA(2),
-  COMFORT_RODZICE(3),
-  COMFORT_NATALIA(4),
-  COMFORT_KAROLINA(5),
-  COMFORT_LAZ_GORA(6);
+import lombok.Getter;
+import pl.smarthouse.sharedobjects.enums.ZoneName;
 
-  private final int zone;
+@Getter
+public class ComfortZone {
+  private final int zoneNumber;
+  private final String comfortZoneName;
 
-  ComfortZone(final int zone) {
-    this.zone = zone;
-  }
-
-  public int getZoneNumber() {
-    return zone;
+  public ComfortZone(final ZoneName zoneName) {
+    comfortZoneName = "COMFORT_" + zoneName.toString().toUpperCase();
+    switch (comfortZoneName) {
+      case "COMFORT_SALON":
+        zoneNumber = 0;
+        break;
+      case "COMFORT_LAZ_DOL":
+        zoneNumber = 1;
+        break;
+      case "COMFORT_PRALNIA":
+        zoneNumber = 2;
+        break;
+      case "COMFORT_RODZICE":
+        zoneNumber = 3;
+        break;
+      case "COMFORT_NATALIA":
+        zoneNumber = 4;
+        break;
+      case "COMFORT_KAROLINA":
+        zoneNumber = 5;
+        break;
+      case "COMFORT_LAZ_GORA":
+        zoneNumber = 6;
+        break;
+      default:
+        zoneNumber = 0;
+    }
   }
 }

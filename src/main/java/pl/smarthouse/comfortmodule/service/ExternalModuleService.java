@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -13,11 +14,21 @@ import reactor.core.publisher.Mono;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ExternalModuleService {
   private final WebClient externalModuleWebClient;
   private final Esp32ModuleConfig esp32ModuleConfig;
 
   public Mono<String> sendBME280DataToExternalModule(final Bme280 bme280) {
+    if (esp32ModuleConfig.getComfortZone().getZoneNumber() == 0) {
+      return Mono.just(bme280)
+          .doOnSubscribe(
+              subscription ->
+                  log.warn(
+                      "Sending to old comfort module will be skipped."
+                          + " Current zone is not handled by it."))
+          .thenReturn("SKIPPED");
+    }
     return externalModuleWebClient
         .post()
         .uri("/action")

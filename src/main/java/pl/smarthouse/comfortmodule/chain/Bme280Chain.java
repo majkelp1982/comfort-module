@@ -5,6 +5,7 @@ import static pl.smarthouse.comfortmodule.properties.ActorProperties.BME280;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.smarthouse.comfortmodule.configurations.Esp32ModuleConfig;
+import pl.smarthouse.comfortmodule.service.ComfortModuleService;
 import pl.smarthouse.smartchain.model.core.Chain;
 import pl.smarthouse.smartchain.model.core.Step;
 import pl.smarthouse.smartchain.service.ChainService;
@@ -16,11 +17,14 @@ import pl.smarthouse.smartmodule.model.actors.type.bme280.Bme280CommandType;
 public class Bme280Chain {
 
   private final Bme280 bme280;
+  private final ComfortModuleService comfortModuleService;
 
   public Bme280Chain(
       @Autowired final Esp32ModuleConfig esp32ModuleConfig,
+      @Autowired final ComfortModuleService comfortModuleService,
       @Autowired final ChainService chainService) {
     bme280 = (Bme280) esp32ModuleConfig.getConfiguration().getActorMap().getActor(BME280);
+    this.comfortModuleService = comfortModuleService;
     final Chain chain = createChain();
     chainService.addChain(chain);
   }
@@ -58,6 +62,16 @@ public class Bme280Chain {
   }
 
   private Runnable setNoAction() {
-    return () -> bme280.getCommandSet().setCommandType(Bme280CommandType.NO_ACTION);
+    return () -> {
+      comfortModuleService
+          .getComfortModuleDao()
+          .map(
+              comfortModuleDao -> {
+                comfortModuleDao.setSensorResponse(bme280.getResponse());
+                return bme280;
+              })
+          .subscribe();
+      bme280.getCommandSet().setCommandType(Bme280CommandType.NO_ACTION);
+    };
   }
 }
