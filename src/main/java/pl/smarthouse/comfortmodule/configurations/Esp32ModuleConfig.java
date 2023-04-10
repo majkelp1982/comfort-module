@@ -24,8 +24,8 @@ public class Esp32ModuleConfig {
   private final pl.smarthouse.smartmodule.model.configuration.Configuration configuration;
   @Autowired ModuleService moduleService;
   @Autowired ManagerService managerService;
+  ComfortZone comfortZone;
   private String macAddress;
-  private ComfortZone comfortZone;
 
   public Esp32ModuleConfig(final ApplicationArguments applicationArguments) {
     checkApplicationArguments(applicationArguments);
