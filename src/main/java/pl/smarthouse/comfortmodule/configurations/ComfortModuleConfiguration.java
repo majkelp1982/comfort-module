@@ -6,9 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import pl.smarthouse.comfortmodule.model.dao.ComfortModuleDao;
 import pl.smarthouse.smartmodule.model.actors.type.bme280.Bme280Response;
-import pl.smarthouse.smartmonitoring.model.Bme280ResponseCompareProperties;
-import pl.smarthouse.smartmonitoring.model.DoubleCompareProperties;
-import pl.smarthouse.smartmonitoring.model.IntCompareProperties;
+import pl.smarthouse.smartmonitoring.properties.bme280.Bme280DefaultProperties;
 import pl.smarthouse.smartmonitoring.service.CompareProcessor;
 import pl.smarthouse.smartmonitoring.service.MonitoringService;
 
@@ -32,24 +30,6 @@ public class ComfortModuleConfiguration {
             .build();
     monitoringService.setModuleDaoObject(comfortModuleDao);
 
-    compareProcessor.addMap(
-        "sensorResponse",
-        Bme280ResponseCompareProperties.builder()
-            .temperature(
-                DoubleCompareProperties.builder()
-                    .saveEnabled(true)
-                    .saveTolerance(0.1)
-                    .warning(0.5)
-                    .alarm(1.0)
-                    .build())
-            .humidity(
-                IntCompareProperties.builder()
-                    .saveEnabled(true)
-                    .saveTolerance(5)
-                    .warning(5)
-                    .alarm(10)
-                    .build())
-            .pressure(DoubleCompareProperties.builder().saveEnabled(false).build())
-            .build());
+    Bme280DefaultProperties.setDefaultProperties(compareProcessor, "sensorResponse");
   }
 }

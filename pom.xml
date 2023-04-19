@@ -57,7 +57,7 @@
 		<dependency>
 			<groupId>pl.smarthouse</groupId>
 			<artifactId>smart-monitoring</artifactId>
-			<version>1.1</version>
+			<version>1.2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.modelmapper</groupId>

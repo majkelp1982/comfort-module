@@ -8,12 +8,7 @@ import pl.smarthouse.smartmodule.model.actors.type.bme280.Bme280Response;
 
 @Data
 @SuperBuilder
-public class ComfortModuleDao extends ModuleDao implements Cloneable {
+public class ComfortModuleDao extends ModuleDao {
   private Bme280Response sensorResponse;
   @Transient private boolean heatingEnabled;
-
-  @Override
-  public Object clone() throws CloneNotSupportedException {
-    return super.clone();
-  }
 }
