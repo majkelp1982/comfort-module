@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import pl.smarthouse.comfortmodule.model.dao.ComfortModuleDao;
 import pl.smarthouse.smartmodule.model.actors.type.bme280.Bme280Response;
-import pl.smarthouse.smartmonitoring.properties.bme280.Bme280DefaultProperties;
+import pl.smarthouse.smartmonitoring.properties.defaults.Bme280DefaultProperties;
 import pl.smarthouse.smartmonitoring.service.CompareProcessor;
 import pl.smarthouse.smartmonitoring.service.MonitoringService;
 
