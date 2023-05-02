@@ -5,7 +5,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import pl.smarthouse.comfortmodule.configurations.ComfortModuleConfiguration;
 import pl.smarthouse.comfortmodule.model.dao.ComfortModuleDao;
-import pl.smarthouse.comfortmodule.model.dto.ComfortModuleDto;
+import pl.smarthouse.sharedobjects.dto.ComfortModuleDto;
 import reactor.core.publisher.Mono;
 
 @Service

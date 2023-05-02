@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pl.smarthouse.comfortmodule.model.dto.ComfortModuleDto;
 import pl.smarthouse.comfortmodule.service.ComfortModuleService;
+import pl.smarthouse.sharedobjects.dto.ComfortModuleDto;
 import reactor.core.publisher.Mono;
 
 @RestController
