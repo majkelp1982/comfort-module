@@ -7,8 +7,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
-import org.springframework.web.reactive.function.client.WebClient;
 import pl.smarthouse.comfortmodule.configurations.Esp32ModuleConfig;
+import pl.smarthouse.comfortmodule.configurations.ExternalModuleConfiguration;
 import pl.smarthouse.smartmodule.model.actors.type.bme280.Bme280;
 import reactor.core.publisher.Mono;
 
@@ -16,7 +16,7 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 @Slf4j
 public class ExternalModuleService {
-  private final WebClient externalModuleWebClient;
+  private final ExternalModuleConfiguration externalModuleConfiguration;
   private final Esp32ModuleConfig esp32ModuleConfig;
 
   public Mono<String> sendBME280DataToExternalModule(final Bme280 bme280) {
@@ -29,7 +29,8 @@ public class ExternalModuleService {
                           + " Current zone is not handled by it."))
           .thenReturn("SKIPPED");
     }
-    return externalModuleWebClient
+    return externalModuleConfiguration
+        .getWebClient()
         .post()
         .uri("/action")
         .contentType(MediaType.APPLICATION_JSON)

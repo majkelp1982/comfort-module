@@ -63,14 +63,7 @@ public class Bme280Chain {
 
   private Runnable setNoAction() {
     return () -> {
-      comfortModuleService
-          .getComfortModuleDao()
-          .map(
-              comfortModuleDao -> {
-                comfortModuleDao.setSensorResponse(bme280.getResponse());
-                return bme280;
-              })
-          .subscribe();
+      comfortModuleService.setBme280Sensor(bme280.getResponse()).subscribe();
       bme280.getCommandSet().setCommandType(Bme280CommandType.NO_ACTION);
     };
   }
