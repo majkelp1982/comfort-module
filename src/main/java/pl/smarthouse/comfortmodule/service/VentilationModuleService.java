@@ -1,11 +1,13 @@
 package pl.smarthouse.comfortmodule.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.ClientResponse;
 import pl.smarthouse.comfortmodule.configurations.VentilationModuleConfiguration;
+import pl.smarthouse.comfortmodule.exceptions.VentilationModuleServiceResponseException;
 import pl.smarthouse.sharedobjects.dto.ventilation.ZoneDto;
 import pl.smarthouse.sharedobjects.enums.Operation;
 import pl.smarthouse.sharedobjects.enums.ZoneName;
@@ -14,6 +16,7 @@ import reactor.core.publisher.Mono;
 @EnableScheduling
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class VentilationModuleService {
   private static final String VENTILATION_MODULE_TYPE = "VENTILATION";
   private final ComfortModuleService comfortModuleService;
@@ -84,15 +87,28 @@ public class VentilationModuleService {
                                 .queryParam("operation", operation)
                                 .queryParam("requestPower", requestPower)
                                 .build())
-                    .exchangeToMono(this::processResponse));
+                    .exchangeToMono(this::processResponse))
+        .doOnError(
+            throwable -> {
+              ventilationModuleConfiguration.resetBaseUrl();
+              log.error(
+                  "Error occurred on sendCommandToVentilationModule. Reason: {}",
+                  throwable.getMessage(),
+                  throwable);
+            });
   }
 
   private Mono<ZoneDto> processResponse(final ClientResponse clientResponse) {
     if (clientResponse.statusCode().is2xxSuccessful()) {
       return clientResponse.bodyToMono(ZoneDto.class);
     } else {
-      ventilationModuleConfiguration.resetBaseUrl();
-      return clientResponse.createException().flatMap(Mono::error);
+      return clientResponse
+          .bodyToMono(String.class)
+          .flatMap(
+              response ->
+                  Mono.error(
+                      new VentilationModuleServiceResponseException(
+                          clientResponse.statusCode(), response)));
     }
   }
 }

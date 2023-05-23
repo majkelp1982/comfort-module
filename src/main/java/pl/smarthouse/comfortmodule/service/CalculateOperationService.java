@@ -2,6 +2,8 @@ package pl.smarthouse.comfortmodule.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import pl.smarthouse.comfortmodule.service.functions.AirExchangerService;
+import pl.smarthouse.comfortmodule.service.functions.ForcedAirService;
 import pl.smarthouse.comfortmodule.service.functions.HumidityService;
 import pl.smarthouse.sharedobjects.dto.comfort.ComfortModuleDto;
 import pl.smarthouse.sharedobjects.enums.Operation;
@@ -12,6 +14,8 @@ import reactor.core.publisher.Mono;
 public class CalculateOperationService {
   private final ComfortModuleService comfortModuleService;
   private final HumidityService humidityService;
+  private final ForcedAirService forcedAirService;
+  private final AirExchangerService airExchangerService;
 
   public Mono<ComfortModuleDto> calculateOperation() {
     return comfortModuleService
@@ -23,9 +27,15 @@ public class CalculateOperationService {
   private Mono<ComfortModuleDto> calculateOperation(final ComfortModuleDto comfortModuleDto) {
     comfortModuleDto.setLeftHoldTimeInMinutes(humidityService.getLeftHoldTimeInMinutes());
 
-    if (Operation.HUMIDITY_ALERT.equals(humidityService.getRequiredOperation())) {
+    if (!Operation.STANDBY.equals(humidityService.getRequiredOperation())) {
       comfortModuleDto.setAction(
           humidityService.getRequiredOperation(), humidityService.getRequiredPower());
+    } else if (!Operation.STANDBY.equals(forcedAirService.getRequiredOperation())) {
+      comfortModuleDto.setAction(
+          forcedAirService.getRequiredOperation(), forcedAirService.getRequiredPower());
+    } else if (!Operation.STANDBY.equals(airExchangerService.getRequiredOperation())) {
+      comfortModuleDto.setAction(
+          airExchangerService.getRequiredOperation(), airExchangerService.getRequiredPower());
     } else {
       comfortModuleDto.setStandby();
     }

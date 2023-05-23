@@ -15,7 +15,7 @@ public class ParamsRepository {
   public Mono<ComfortModuleParamsDao> saveParams(
       final ComfortModuleParamsDao comfortModuleParamsDao, final String paramTableName) {
     return reactiveMongoTemplate
-        .remove(new Query(), ComfortModuleParamsDao.class)
+        .remove(new Query(), ComfortModuleParamsDao.class, paramTableName)
         .then(reactiveMongoTemplate.save(comfortModuleParamsDao, paramTableName));
   }
 
