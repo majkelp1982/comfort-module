@@ -27,8 +27,8 @@ public class ComfortModuleController {
     return comfortModuleParamsService.saveParams(comfortModuleSettingsDto);
   }
 
-  @GetMapping("/settings")
-  public Mono<ComfortModuleParamsDto> getSettings() {
+  @GetMapping("/params")
+  public Mono<ComfortModuleParamsDto> getParams() {
     return comfortModuleParamsService.getParams();
   }
 }
