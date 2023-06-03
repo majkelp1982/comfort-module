@@ -6,6 +6,7 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 import lombok.experimental.UtilityClass;
 import pl.smarthouse.sharedobjects.dto.comfort.core.TimeRange;
 
@@ -16,7 +17,7 @@ public class TimeRangeUtils {
         .contains(LocalDateTime.now().getDayOfWeek());
   }
 
-  public boolean inTimeRange(final List<TimeRange> timeRanges) {
+  public boolean inTimeRange(final Set<TimeRange> timeRanges) {
     if (Objects.isNull(timeRanges)) {
       return false;
     }
@@ -30,8 +31,8 @@ public class TimeRangeUtils {
     return timeRange.isPresent();
   }
 
-  public List<TimeRange> getTimeRangeByDayOfTheWeek(
-      final List<TimeRange> weekendTimeRanges, final List<TimeRange> workdayTimeranges) {
-    return isWeekend() ? weekendTimeRanges : workdayTimeranges;
+  public Set<TimeRange> getTimeRangesByDayOfTheWeek(
+      final Set<TimeRange> weekendTimeRanges, final Set<TimeRange> workdayTimeRanges) {
+    return isWeekend() ? weekendTimeRanges : workdayTimeRanges;
   }
 }

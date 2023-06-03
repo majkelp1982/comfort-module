@@ -1,7 +1,7 @@
 package pl.smarthouse.comfortmodule.service.functions;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Set;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -39,9 +39,9 @@ public class AirExchangerService {
   }
 
   private void calculateOperation(final AirExchanger airExchanger) {
-    final List<TimeRange> timeRanges =
-        TimeRangeUtils.getTimeRangeByDayOfTheWeek(
-            airExchanger.getWeekendTimeRangeList(), airExchanger.getWorkdayTimeRangeList());
+    final Set<TimeRange> timeRanges =
+        TimeRangeUtils.getTimeRangesByDayOfTheWeek(
+            airExchanger.getWeekendTimeRanges(), airExchanger.getWorkdayTimeRanges());
 
     // Calculate operation
     if (!airExchanger.isEnabled() || !TimeRangeUtils.inTimeRange(timeRanges)) {
