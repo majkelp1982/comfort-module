@@ -76,8 +76,8 @@ public class ForcedAirAndHeatingService {
     if (Operation.FLOOR_HEATING.equals(resultOperation) && deltaTemp >= 0.0) {
       resultOperation = Operation.STANDBY;
     }
-    
-    //Air Cooling and Air condition
+
+    // Air Cooling and Air condition
     if (!Operation.AIR_CONDITION.equals(resultOperation) && deltaTemp > forcedAirTolerance) {
       resultOperation = Operation.AIR_COOLING;
     }
