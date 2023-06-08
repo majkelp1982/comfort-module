@@ -15,7 +15,7 @@ import pl.smarthouse.sharedobjects.dto.comfort.core.TemperatureControl;
 import pl.smarthouse.sharedobjects.dto.comfort.core.TimeRange;
 import pl.smarthouse.sharedobjects.enums.Operation;
 
-public class ForcedAirAndHeatingServiceTest {
+public class CalculateOperationForcedAirCoolingAndAirConditionTest {
   @MockBean ComfortModuleService comfortModuleService;
   @MockBean ComfortModuleParamsService comfortModuleParamsService;
   ForcedAirAndHeatingService forcedAirAndHeatingService =
@@ -23,14 +23,15 @@ public class ForcedAirAndHeatingServiceTest {
 
   @Test
   void test1() {
-    // params: Required temp: 24.5, heating: 0.5, air: 0.7, airCon: 1.1, airPower:40, airConPower: 75, time ranges: whole day
+    // params: Required temp: 24.5, heating: 0.5, air: 0.7, airCon: 1.1, airPower:40, airConPower:
+    // 75, time ranges: whole day
     // given: sensor has error. No temp read
     // when: calculating operation
     // then: STANDBY and power 0
 
     setCurrentTemperature(0.0);
     setBmeError(true);
-    setCurrentOperation(Operation.STANDBY);
+    setStandbyOperation();
 
     forcedAirAndHeatingService.calculateOperation(createTemperatureControl());
 
@@ -39,13 +40,14 @@ public class ForcedAirAndHeatingServiceTest {
 
   @Test
   void test2() {
-    // params: Required temp: 24.5, heating: 0.5, air: 0.7, airCon: 1.1, airPower:40, airConPower: 75, time ranges: whole day
+    // params: Required temp: 24.5, heating: 0.5, air: 0.7, airCon: 1.1, airPower:40, airConPower:
+    // 75, time ranges: whole day
     // given: sensor ok. temperature in range
     // when: calculating operation
     // then: STANDBY and power 0
 
-    setCurrentOperation(Operation.STANDBY);
-    setCurrentTemperature(24.2);
+    setStandbyOperation();
+    setCurrentTemperature(25.2);
     setBmeError(false);
 
     forcedAirAndHeatingService.calculateOperation(createTemperatureControl());
@@ -55,50 +57,54 @@ public class ForcedAirAndHeatingServiceTest {
 
   @Test
   void test3() {
-    // params: Required temp: 24.5, heating: 0.5, air: 0.7, airCon: 1.1, airPower:40, airConPower: 75, time ranges: whole day
-    // given: temperature to low
+    // params: Required temp: 24.5, heating: 0.5, air: 0.7, airCon: 1.1, airPower:40, airConPower:
+    // 75, time ranges: whole day
+    // given: temperature to high
     // when: calculating operation
-    // then: FLOOR_HEATING and power 0
+    // then: AIR_COOLING and power 40
 
-    setCurrentOperation(Operation.STANDBY);
-    setCurrentTemperature(24.0);
+    setStandbyOperation();
+    setCurrentTemperature(25.2);
     forcedAirAndHeatingService.calculateOperation(createTemperatureControl());
     assertResults(Operation.STANDBY, 0);
 
-    setCurrentTemperature(23.9);
+    setCurrentTemperature(25.3);
     forcedAirAndHeatingService.calculateOperation(createTemperatureControl());
-    assertResults(Operation.FLOOR_HEATING, 0);
+    assertResults(Operation.AIR_COOLING, 40);
   }
 
   @Test
   void test4() {
-    // params: Required temp: 24.5, heating: 0.5, air: 0.7, airCon: 1.1, airPower:40, airConPower: 75, time ranges: whole day
-    // given: FLOOR_HEATING, temperature to low but heating switch to not enabled
+    // params: Required temp: 24.5, heating: 0.5, air: 0.7, airCon: 1.1, airPower:40, airConPower:
+    // 75, time ranges: whole day
+    // given: AIR_COOLING, temperature to high but air cooling switch to not enabled
     // when: calculating operation
     // then: STANDBY and power 0
 
-    setCurrentOperation(Operation.FLOOR_HEATING);
-    setCurrentTemperature(23.9);
+    setCurrentOperation(Operation.AIR_COOLING, 40);
+    setCurrentTemperature(25.3);
     final TemperatureControl temperatureControl = createTemperatureControl();
-    temperatureControl.getHeatingControl().setHeatingEnabled(false);
+    forcedAirAndHeatingService.calculateOperation(temperatureControl);
+    assertResults(Operation.AIR_COOLING, 40);
+
+    temperatureControl.getForcedAirControl().setForcedAirEnabled(false);
 
     forcedAirAndHeatingService.calculateOperation(temperatureControl);
-
     assertResults(Operation.STANDBY, 0);
   }
 
   @Test
   void test5() {
-    // params: Required temp: 24.5, heating: 0.5, air: 0.7, airCon: 1.1, airPower:40, airConPower: 75, time ranges: whole day
-    // given: STANDBY, temperature to low heating not enabled
+    // params: Required temp: 24.5, heating: 0.5, air: 0.7, airCon: 1.1, airPower:40, airConPower:
+    // 75, time ranges: whole day
+    // given: STANDBY, temperature to high but forced air not enabled
     // when: calculating operation
     // then: stay STANDBY and power 0
 
-    setCurrentOperation(Operation.STANDBY);
-    setCurrentTemperature(23.9);
+    setStandbyOperation();
+    setCurrentTemperature(25.3);
     final TemperatureControl temperatureControl = createTemperatureControl();
-    temperatureControl.getHeatingControl().setHeatingEnabled(false);
-
+    temperatureControl.getForcedAirControl().setForcedAirEnabled(false);
     forcedAirAndHeatingService.calculateOperation(temperatureControl);
 
     assertResults(Operation.STANDBY, 0);
@@ -106,72 +112,94 @@ public class ForcedAirAndHeatingServiceTest {
 
   @Test
   void test6() {
-    // description. Required temp: 24.5, heating: 0.5, air: 0.7, airCon: 1.1, airPower:40, airConPower: 75, time ranges: whole day
-    // given: temperature low, FLOOR_HEATING, and then even lower temperature
+    // description. Required temp: 24.5, heating: 0.5, air: 0.7, airCon: 1.1, airPower:40,
+    // airConPower: 75, time ranges: whole day
+    // given: temperature high, AIR_COOLING, and then even higher temperature
     // when: calculating operation
-    // then: AIR_HEATING and power 40
+    // then: AIR_CONDITION and power 75
 
     final TemperatureControl temperatureControl = createTemperatureControl();
-    setCurrentOperation(Operation.STANDBY);
-    setCurrentTemperature(23.8);
+    setStandbyOperation();
+    setCurrentTemperature(25.6);
     forcedAirAndHeatingService.calculateOperation(temperatureControl);
-    assertResults(Operation.FLOOR_HEATING, 0);
+    assertResults(Operation.AIR_COOLING, 40);
 
-    setCurrentTemperature(23.7);
+    setCurrentTemperature(25.7);
     forcedAirAndHeatingService.calculateOperation(temperatureControl);
-    assertResults(Operation.AIR_HEATING, 40);
+    assertResults(Operation.AIR_CONDITION, 75);
   }
 
   @Test
   void test7() {
-    // description. Required temp: 24.5, heating: 0.5, air: 0.7, airCon: 1.1, airPower:40, airConPower: 75, time ranges: whole day
-    // given: AIR_HEATING, temperature low, but higher than tolerance
+    // description. Required temp: 24.5, heating: 0.5, air: 0.7, airCon: 1.1, airPower:40,
+    // airConPower: 75, time ranges: whole day
+    // given: temperature high, AIR_COOLING, and then even higher temperature, but AIR_CON not
+    // enabled
     // when: calculating operation
-    // then: stay AIR_HEATING and power 40 until air is delta+(air-0.5)
+    // then: AIR_COOLING and power 40
 
     final TemperatureControl temperatureControl = createTemperatureControl();
-    setCurrentOperation(Operation.AIR_HEATING);
-
-    setCurrentTemperature(24.3);
+    setStandbyOperation();
+    setCurrentTemperature(25.6);
     forcedAirAndHeatingService.calculateOperation(temperatureControl);
-    assertResults(Operation.AIR_HEATING, 40);
+    assertResults(Operation.AIR_COOLING, 40);
+
+    setCurrentTemperature(25.7);
+    temperatureControl.getForcedAirControl().setAirConditionEnabled(false);
+
+    forcedAirAndHeatingService.calculateOperation(temperatureControl);
+    assertResults(Operation.AIR_COOLING, 40);
   }
 
   @Test
   void test8() {
-    // description. Required temp: 24.5, heating: 0.5, air: 0.7, airCon: 1.1, airPower:40, airConPower: 75, time ranges: whole day
-    // given: AIR_HEATING, temperature low, but higher than tolerance
+    // description. Required temp: 24.5, heating: 0.5, air: 0.7, airCon: 1.1, airPower:40,
+    // airConPower: 75, time ranges: whole day
+    // given: AIR_CONDITION, temperature high, but lower than air condition tolerance
     // when: calculating operation
-    // then: switch from AIR_HEATING and power 40 to FLOOR_HEATING
+    // then: switch back to AIR_COOLING and power 40
 
     final TemperatureControl temperatureControl = createTemperatureControl();
-    setCurrentOperation(Operation.AIR_HEATING);
+    setCurrentOperation(Operation.AIR_CONDITION, 75);
 
-    setCurrentTemperature(24.1);
+    setCurrentTemperature(25.7);
     forcedAirAndHeatingService.calculateOperation(temperatureControl);
-    assertResults(Operation.FLOOR_HEATING, 0);
+    assertResults(Operation.AIR_CONDITION, 75);
+
+    setCurrentTemperature(25.6);
+    forcedAirAndHeatingService.calculateOperation(temperatureControl);
+    assertResults(Operation.AIR_COOLING, 40);
   }
 
   @Test
-  void test9() {
-    // description. Required temp: 24.5, heating: 0.5, air: 0.7, airCon: 1.1, airPower:40, airConPower: 75, time ranges: whole day
-    // given: FLOOR_HEATING, temperature reach required temp
+  void test09() {
+    // description. Required temp: 24.5, heating: 0.5, air: 0.7, airCon: 1.1, airPower:40,
+    // airConPower: 75, time ranges: whole day
+    // given: AIR_COOLING, temperature reach required temp
     // when: calculating operation
     // then: STANDBY and power 0
     final TemperatureControl temperatureControl = createTemperatureControl();
-    setCurrentOperation(Operation.FLOOR_HEATING);
+    setCurrentOperation(Operation.AIR_COOLING, 40);
 
-    setCurrentTemperature(24.0);
+    setCurrentTemperature(24.6);
+    forcedAirAndHeatingService.calculateOperation(temperatureControl);
+    assertResults(Operation.AIR_COOLING, 40);
+    setCurrentTemperature(24.5);
     forcedAirAndHeatingService.calculateOperation(temperatureControl);
     assertResults(Operation.STANDBY, 0);
   }
 
-  private void setCurrentOperation(final Operation operation) {
-    forcedAirAndHeatingService.setRequiredOperation(operation);
+  private void setStandbyOperation() {
+    forcedAirAndHeatingService.setRequiredOperation(Operation.STANDBY);
   }
 
   private void setCurrentTemperature(final double temperature) {
     forcedAirAndHeatingService.getBme280ResponseDto().setTemperature(temperature);
+  }
+
+  private void setCurrentOperation(final Operation operation, final int power) {
+    forcedAirAndHeatingService.setRequiredOperation(operation);
+    forcedAirAndHeatingService.setRequiredPower(power);
   }
 
   private void setBmeError(final boolean error) {

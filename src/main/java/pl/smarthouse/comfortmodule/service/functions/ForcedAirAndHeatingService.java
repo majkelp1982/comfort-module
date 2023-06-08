@@ -78,7 +78,7 @@ public class ForcedAirAndHeatingService {
     }
 
     // Air Cooling and Air condition
-    if (!Operation.AIR_CONDITION.equals(resultOperation) && deltaTemp > forcedAirTolerance) {
+    if (deltaTemp > forcedAirTolerance) {
       resultOperation = Operation.AIR_COOLING;
     }
 
@@ -86,8 +86,8 @@ public class ForcedAirAndHeatingService {
       resultOperation = Operation.AIR_CONDITION;
     }
 
-    if (!Operation.AIR_CONDITION.equals(resultOperation) && deltaTemp > forcedAirTolerance) {
-      resultOperation = Operation.AIR_COOLING;
+    if (Operation.AIR_COOLING.equals(resultOperation) && deltaTemp <= 0.0) {
+      resultOperation = Operation.STANDBY;
     }
 
     resultOperation = disableIfFunctionNotActive(temperatureControl, resultOperation);
