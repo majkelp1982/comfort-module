@@ -190,7 +190,7 @@ public class CalculateOperationForcedAirHeatingAndFloorHeatingTest {
     // airConPower: 70, time ranges: whole day
     // given: AIR_HEATING, temperature low, but higher than tolerance
     // when: calculating operation
-    // then: stay AIR_HEATING and power 40 until air is delta+(air-0.5)
+    // then: stay AIR_HEATING and power 35 until air is delta+(air-0.5)
     final HeatingControl heatingControl = mockHeatingControl(true, 0.5, 0.5);
     final ForcedAirControl forcedAirControl = mockForcedAirControl(true, true, 1.0, 1.5, 35, 70);
     final TemperatureControl temperatureControl =
@@ -200,6 +200,45 @@ public class CalculateOperationForcedAirHeatingAndFloorHeatingTest {
     setCurrentOperation(Operation.AIR_HEATING, 35);
     forcedAirAndHeatingService.calculateOperation(temperatureControl);
     assertResults(Operation.AIR_HEATING, 35);
+  }
+
+  @Test
+  void test11() {
+    // description. Required temp: 27.0, heating: 0.5, air: 1.0, airCon: 1.5, airPower:35,
+    // airConPower: 70, time ranges: whole day
+    // given: FLOOR_HEATING, temperature low, but higher than tolerance
+    // when: calculating operation
+    // then: AIR_HEATING and power 35
+    final HeatingControl heatingControl = mockHeatingControl(true, 0.5, 0.5);
+    final ForcedAirControl forcedAirControl = mockForcedAirControl(true, true, 1.0, 1.5, 35, 70);
+    final TemperatureControl temperatureControl =
+        mockTemperatureControl(27.0, heatingControl, forcedAirControl);
+
+    setCurrentTemperature(25.64);
+    setCurrentOperation(Operation.FLOOR_HEATING, 35);
+    forcedAirAndHeatingService.calculateOperation(temperatureControl);
+    assertResults(Operation.AIR_HEATING, 35);
+  }
+
+  @Test
+  void test12() {
+    // description. Required temp: 27.0, heating: 0.5, air: 1.0, airCon: 1.5, airPower:35,
+    // airConPower: 70, time ranges: whole day
+    // given: FLOOR_HEATING, temperature low, but even higher than AIR_HEATING tolerance which is
+    // disabled
+    // when: calculating operation
+    // then: FLOR_HEATINg and power 0
+    final HeatingControl heatingControl = mockHeatingControl(true, 0.5, 0.5);
+    final ForcedAirControl forcedAirControl = mockForcedAirControl(true, true, 1.0, 1.5, 35, 70);
+    final TemperatureControl temperatureControl =
+        mockTemperatureControl(27.0, heatingControl, forcedAirControl);
+
+    setCurrentTemperature(25.64);
+    setCurrentOperation(Operation.FLOOR_HEATING, 0);
+    forcedAirControl.setForcedAirEnabled(false);
+
+    forcedAirAndHeatingService.calculateOperation(temperatureControl);
+    assertResults(Operation.FLOOR_HEATING, 0);
   }
 
   private void setStandbyOperation() {
