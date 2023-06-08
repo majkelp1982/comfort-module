@@ -63,7 +63,7 @@ public class ForcedAirAndHeatingService {
 
     // Calculate operation
     // Heating
-    if (deltaTemp < -floorHeatingTolerance
+    if ((!Operation.AIR_HEATING.equals(resultOperation) && deltaTemp < -floorHeatingTolerance)
         || (Operation.AIR_HEATING.equals(resultOperation)
             && deltaTemp >= -forcedAirTolerance + 0.5)) {
       resultOperation = Operation.FLOOR_HEATING;

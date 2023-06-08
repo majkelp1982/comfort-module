@@ -184,6 +184,24 @@ public class CalculateOperationForcedAirHeatingAndFloorHeatingTest {
     assertResults(Operation.STANDBY, 0);
   }
 
+  @Test
+  void test10() {
+    // description. Required temp: 26.6, heating: 0.5, air: 1.0, airCon: 1.5, airPower:35,
+    // airConPower: 70, time ranges: whole day
+    // given: AIR_HEATING, temperature low, but higher than tolerance
+    // when: calculating operation
+    // then: stay AIR_HEATING and power 40 until air is delta+(air-0.5)
+    final HeatingControl heatingControl = mockHeatingControl(true, 0.5, 0.5);
+    final ForcedAirControl forcedAirControl = mockForcedAirControl(true, true, 1.0, 1.5, 35, 70);
+    final TemperatureControl temperatureControl =
+        mockTemperatureControl(26.6, heatingControl, forcedAirControl);
+
+    setCurrentTemperature(25.64);
+    setCurrentOperation(Operation.AIR_HEATING, 35);
+    forcedAirAndHeatingService.calculateOperation(temperatureControl);
+    assertResults(Operation.AIR_HEATING, 35);
+  }
+
   private void setStandbyOperation() {
     forcedAirAndHeatingService.setRequiredOperation(Operation.STANDBY);
   }
