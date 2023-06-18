@@ -126,6 +126,9 @@ public class ForcedAirAndHeatingService {
       if (Operation.FLOOR_HEATING.equals(resultOperation)) {
         return Operation.STANDBY;
       }
+      if (Operation.AIR_HEATING.equals(resultOperation)) {
+        return Operation.STANDBY;
+      }
     }
     if (!temperatureControl.getForcedAirControl().isAirConditionEnabled()) {
       if (Operation.AIR_CONDITION.equals(resultOperation)) {
