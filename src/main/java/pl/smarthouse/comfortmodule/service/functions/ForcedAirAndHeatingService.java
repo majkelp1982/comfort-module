@@ -78,7 +78,12 @@ public class ForcedAirAndHeatingService {
     }
 
     // Air Cooling and Air condition
-    if (deltaTemp > forcedAirTolerance) {
+    if (!Operation.AIR_CONDITION.equals(resultOperation) && deltaTemp > forcedAirTolerance) {
+      resultOperation = Operation.AIR_COOLING;
+    }
+
+    if (Operation.AIR_CONDITION.equals(resultOperation)
+        && deltaTemp < airConditionTolerance - 0.1) {
       resultOperation = Operation.AIR_COOLING;
     }
 

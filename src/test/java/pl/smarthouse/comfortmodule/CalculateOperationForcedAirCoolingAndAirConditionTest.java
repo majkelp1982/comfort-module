@@ -152,26 +152,6 @@ public class CalculateOperationForcedAirCoolingAndAirConditionTest {
   }
 
   @Test
-  void test8() {
-    // description. Required temp: 24.5, heating: 0.5, air: 0.7, airCon: 1.1, airPower:40,
-    // airConPower: 75, time ranges: whole day
-    // given: AIR_CONDITION, temperature high, but lower than air condition tolerance
-    // when: calculating operation
-    // then: switch back to AIR_COOLING and power 40
-
-    final TemperatureControl temperatureControl = createTemperatureControl();
-    setCurrentOperation(Operation.AIR_CONDITION, 75);
-
-    setCurrentTemperature(25.7);
-    forcedAirAndHeatingService.calculateOperation(temperatureControl);
-    assertResults(Operation.AIR_CONDITION, 75);
-
-    setCurrentTemperature(25.6);
-    forcedAirAndHeatingService.calculateOperation(temperatureControl);
-    assertResults(Operation.AIR_COOLING, 40);
-  }
-
-  @Test
   void test09() {
     // description. Required temp: 24.5, heating: 0.5, air: 0.7, airCon: 1.1, airPower:40,
     // airConPower: 75, time ranges: whole day
@@ -187,6 +167,42 @@ public class CalculateOperationForcedAirCoolingAndAirConditionTest {
     setCurrentTemperature(24.5);
     forcedAirAndHeatingService.calculateOperation(temperatureControl);
     assertResults(Operation.STANDBY, 0);
+  }
+
+  @Test
+  void test10() {
+    // description. Required temp: 24.5, heating: 0.5, air: 0.7, airCon: 1.1, airPower:40,
+    // airConPower: 75, time ranges: whole day
+    // given: AIR_CONDITION, temperature below -0.1 airConTolerance
+    // when: calculating operation
+    // then: AIR_CONDITION and power 75
+    final TemperatureControl temperatureControl = createTemperatureControl();
+    setCurrentOperation(Operation.AIR_CONDITION, 75);
+
+    setCurrentTemperature(25.6);
+    forcedAirAndHeatingService.calculateOperation(temperatureControl);
+    assertResults(Operation.AIR_CONDITION, 75);
+    setCurrentTemperature(25.5);
+    forcedAirAndHeatingService.calculateOperation(temperatureControl);
+    assertResults(Operation.AIR_CONDITION, 75);
+  }
+
+  @Test
+  void test11() {
+    // description. Required temp: 24.5, heating: 0.5, air: 0.7, airCon: 1.1, airPower:40,
+    // airConPower: 75, time ranges: whole day
+    // given: AIR_CONDITION, temperature below -0.2 airConTolerance
+    // when: calculating operation
+    // then: AIR_COOLING and power 40
+    final TemperatureControl temperatureControl = createTemperatureControl();
+    setCurrentOperation(Operation.AIR_CONDITION, 75);
+
+    setCurrentTemperature(25.5);
+    forcedAirAndHeatingService.calculateOperation(temperatureControl);
+    assertResults(Operation.AIR_CONDITION, 75);
+    setCurrentTemperature(25.4);
+    forcedAirAndHeatingService.calculateOperation(temperatureControl);
+    assertResults(Operation.AIR_COOLING, 40);
   }
 
   private void setStandbyOperation() {
