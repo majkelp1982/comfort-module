@@ -7,10 +7,10 @@ import static pl.smarthouse.comfortmodule.properties.Esp32ModuleProperties.VERSI
 
 import javax.annotation.PostConstruct;
 import lombok.Getter;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.ApplicationArguments;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import pl.smarthouse.comfortmodule.enums.ComfortZone;
+import pl.smarthouse.comfortmodule.properties.Esp32ModuleProperties;
 import pl.smarthouse.sharedobjects.enums.ZoneName;
 import pl.smarthouse.smartmodule.model.actors.actor.ActorMap;
 import pl.smarthouse.smartmodule.model.actors.type.bme280.Bme280;
@@ -18,36 +18,36 @@ import pl.smarthouse.smartmodule.services.ManagerService;
 import pl.smarthouse.smartmodule.services.ModuleService;
 
 @Configuration
+@RequiredArgsConstructor
 @Getter
 public class Esp32ModuleConfig {
-  // Module specific
-  private final pl.smarthouse.smartmodule.model.configuration.Configuration configuration;
-  @Autowired ModuleService moduleService;
-  @Autowired ManagerService managerService;
+  private final ModuleService moduleService;
+  private final ManagerService managerService;
+  private final Esp32ModuleProperties esp32ModuleProperties;
   ComfortZone comfortZone;
+  // Module specific
+  private pl.smarthouse.smartmodule.model.configuration.Configuration configuration;
   private String macAddress;
-
-  public Esp32ModuleConfig(final ApplicationArguments applicationArguments) {
-    checkApplicationArguments(applicationArguments);
-    configuration =
-        new pl.smarthouse.smartmodule.model.configuration.Configuration(
-            comfortZone.getComfortZoneName(), FIRMWARE, VERSION, macAddress, createActors());
-  }
 
   @PostConstruct
   public void postConstruct() {
+    checkApplicationArguments();
+    configuration =
+        new pl.smarthouse.smartmodule.model.configuration.Configuration(
+            comfortZone.getComfortZoneName(), FIRMWARE, VERSION, macAddress, createActors());
     moduleService.setConfiguration(configuration);
     managerService.setConfiguration(configuration);
   }
 
-  private void checkApplicationArguments(final ApplicationArguments applicationArguments) {
-    if (applicationArguments.getSourceArgs().length != 2) {
+  private void checkApplicationArguments() {
+    if ("DEFAULT".equals(esp32ModuleProperties.getZoneName())
+        || "UNKNOWN".equals(esp32ModuleProperties.getMacAddress())) {
       throw new IllegalArgumentException(
-          "Should be 2 arguments. First module type, second mac address");
+          "Should be 2 application arguments. First zone name, second mac address");
     }
-    final ZoneName zoneName = ZoneName.valueOf(applicationArguments.getSourceArgs()[0]);
+    final ZoneName zoneName = ZoneName.valueOf(esp32ModuleProperties.getZoneName());
     comfortZone = new ComfortZone(zoneName);
-    macAddress = applicationArguments.getSourceArgs()[1];
+    macAddress = esp32ModuleProperties.getMacAddress();
   }
 
   private ActorMap createActors() {
