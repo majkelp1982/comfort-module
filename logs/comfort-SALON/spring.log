@@ -1,0 +1,559 @@
+2023-09-14 18:10:14.049  INFO 1980 --- [main] p.s.c.ComfortModuleApplication           : Starting ComfortModuleApplication using Java 17.0.6 on Michal with PID 1980 (D:\OneDrive\SmartHouse\V3\module-services\comfort-module\target\classes started by spoma in D:\OneDrive\SmartHouse\V3\module-services\comfort-module)
+2023-09-14 18:10:14.077  INFO 1980 --- [main] p.s.c.ComfortModuleApplication           : No active profile set, falling back to 1 default profile: "default"
+2023-09-14 18:10:17.005  INFO 1980 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Reactive MongoDB repositories in DEFAULT mode.
+2023-09-14 18:10:17.034  INFO 1980 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 15 ms. Found 0 Reactive MongoDB repository interfaces.
+2023-09-14 18:10:20.955  INFO 1980 --- [main] org.mongodb.driver.client                : MongoClient with metadata {"driver": {"name": "mongo-java-driver|reactive-streams|spring-boot", "version": "4.6.1"}, "os": {"type": "Windows", "name": "Windows 10", "architecture": "amd64", "version": "10.0"}, "platform": "Java/JetBrains s.r.o./17.0.6+1-b653.34", "application": {"name": "MongoDB Compass Community"}} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, streamFactoryFactory=NettyStreamFactoryFactory{eventLoopGroup=io.netty.channel.nio.NioEventLoopGroup@54e12f4c, socketChannelClass=class io.netty.channel.socket.nio.NioSocketChannel, allocator=PooledByteBufAllocator(directByDefault: true), sslContext=null}, commandListeners=[], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.Jep395RecordCodecProvider@60990e5c]}, clusterSettings={hosts=[192.168.0.200:27017], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='30000 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, sendBufferSize=0}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, sendBufferSize=0}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='MongoDB Compass Community', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, contextProvider=null}
+2023-09-14 18:10:21.246  INFO 1980 --- [cluster-rtt-ClusterId{value='6503306c37cc151e1e84b43b', description='null'}-192.168.0.200:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:82}] to 192.168.0.200:27017
+2023-09-14 18:10:24.072  INFO 1980 --- [cluster-ClusterId{value='6503306c37cc151e1e84b43b', description='null'}-192.168.0.200:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:83}] to 192.168.0.200:27017
+2023-09-14 18:10:24.072  INFO 1980 --- [cluster-ClusterId{value='6503306c37cc151e1e84b43b', description='null'}-192.168.0.200:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=192.168.0.200:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=19888901}
+2023-09-14 18:10:30.902  INFO 1980 --- [main] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8888
+2023-09-14 18:10:31.027  INFO 1980 --- [main] p.s.c.ComfortModuleApplication           : Started ComfortModuleApplication in 18.284 seconds (JVM running for 19.915)
+2023-09-14 18:10:31.044  INFO 1980 --- [main] p.s.smartchain.service.ChainService      : Starting chain service.
+2023-09-14 18:10:31.065  INFO 1980 --- [boundedElastic-1] p.s.smartchain.service.ChainService      : Processing chain number: 0, description: Read BME280 sensor
+2023-09-14 18:10:31.080  INFO 1980 --- [boundedElastic-1] p.s.smartchain.service.ChainService      : Processing chain number: 1, description: Sync BME280 read with external comfort service
+2023-09-14 18:10:31.088  INFO 1980 --- [boundedElastic-2] p.s.smartchain.processor.ChainProcessor  : Chain: Read BME280 sensor, Current step: Standby, waiting for next condition: Waiting 30 seconds
+2023-09-14 18:10:31.088  INFO 1980 --- [boundedElastic-3] p.s.smartchain.processor.ChainProcessor  : Chain: Sync BME280 read with external comfort service, Current step: Standby, waiting for next condition: Waiting 30 seconds
+2023-09-14 18:10:31.248  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:10:31.491  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:10:31.499  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:10:31.550  INFO 1980 --- [nioEventLoopGroup-3-3] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:3, serverValue:84}] to 192.168.0.200:27017
+2023-09-14 18:10:31.553  INFO 1980 --- [nioEventLoopGroup-3-4] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:4, serverValue:85}] to 192.168.0.200:27017
+2023-09-14 18:10:31.584  INFO 1980 --- [nioEventLoopGroup-3-5] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:5, serverValue:86}] to 192.168.0.200:27017
+2023-09-14 18:10:31.669  WARN 1980 --- [nioEventLoopGroup-3-3] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:10:31.669  WARN 1980 --- [nioEventLoopGroup-3-4] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:10:31.669  WARN 1980 --- [nioEventLoopGroup-3-5] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:10:32.825  INFO 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ManagerService  : Successful set base IP for module: SettingsDto(id=6501ea18f7cab1271d01c777, type=COMFORT_SALON, typeHash=1014, isTypeLocked=false, moduleMacAddress=3C:71:BF:4D:63:1C, serviceVersion=20230318.14, moduleFirmwareVersion=20230805.09, moduleIpAddress=192.168.0.118, serviceAddress=192.168.0.117:8888, moduleUpdateTimestamp=2023-09-13T19:59:52Z, serviceUpdateTimestamp=2023-09-14T18:10:39.528708Z, connectionEstablish=false)
+2023-09-14 18:10:41.502  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:10:41.511  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:10:41.520  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:10:41.529  WARN 1980 --- [nioEventLoopGroup-3-4] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:10:41.535  WARN 1980 --- [nioEventLoopGroup-3-3] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:10:41.541  WARN 1980 --- [nioEventLoopGroup-3-5] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:10:51.510  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:10:51.522  WARN 1980 --- [nioEventLoopGroup-3-5] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:10:51.525  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:10:51.530  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:10:51.538  WARN 1980 --- [nioEventLoopGroup-3-5] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:10:51.540  WARN 1980 --- [nioEventLoopGroup-3-3] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:10:53.287  INFO 1980 --- [boundedElastic-1] p.s.smartchain.processor.ChainProcessor  : Chain: Read BME280 sensor, Current step: Read value from sensor type BME280, waiting for next condition: Wait until command read successful
+2023-09-14 18:10:53.288  INFO 1980 --- [boundedElastic-4] p.s.smartchain.processor.ChainProcessor  : Chain: Sync BME280 read with external comfort service, Current step: Read value from sensor type BME280, waiting for next condition: Wait if chain not enabled
+2023-09-14 18:10:53.295  WARN 1980 --- [boundedElastic-4] p.s.c.service.ExternalModuleService      : Sending to old comfort module will be skipped. Current zone is not handled by it.
+2023-09-14 18:10:53.300  INFO 1980 --- [boundedElastic-3] p.s.smartchain.processor.ChainProcessor  : Chain: Sync BME280 read with external comfort service, Current step: Standby, waiting for next condition: Waiting 30 seconds
+2023-09-14 18:10:53.627  INFO 1980 --- [scheduling-1] p.s.smartmodule.services.ModuleService   : Sending command: ModuleCommands(type=COMFORT_SALON, version=20230318.14, commandMap={bme280=Bme280CommandSet(super=CommandSet(commandType=READ, value=null))})
+2023-09-14 18:10:58.674 ERROR 1980 --- [reactor-http-nio-4] p.s.smartmodule.services.ModuleService   : Error while communicate with module, reason: connection timed out: /192.168.0.118:80; nested exception is io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80
+2023-09-14 18:10:58.675 ERROR 1980 --- [reactor-http-nio-4] p.s.smartmodule.services.ModuleService   : Reset module base url caused by connection error
+2023-09-14 18:10:58.675 ERROR 1980 --- [reactor-http-nio-4] p.s.smartmodule.services.ModuleService   : Error while exchange, cause: io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80, message: connection timed out: /192.168.0.118:80; nested exception is io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80
+2023-09-14 18:10:58.849  INFO 1980 --- [reactor-http-nio-7] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 2186 ms
+2023-09-14 18:10:59.734  INFO 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ManagerService  : Successful set base IP for module: SettingsDto(id=6501ea18f7cab1271d01c777, type=COMFORT_SALON, typeHash=1014, isTypeLocked=false, moduleMacAddress=3C:71:BF:4D:63:1C, serviceVersion=20230318.14, moduleFirmwareVersion=20230805.09, moduleIpAddress=192.168.0.118, serviceAddress=192.168.0.117:8888, moduleUpdateTimestamp=2023-09-13T19:59:52Z, serviceUpdateTimestamp=2023-09-14T18:11:06.440247200Z, connectionEstablish=false)
+2023-09-14 18:10:59.739  INFO 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Sending command: ModuleCommands(type=COMFORT_SALON, version=20230318.14, commandMap={bme280=Bme280CommandSet(super=CommandSet(commandType=READ, value=null))})
+2023-09-14 18:11:04.751 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Error while communicate with module, reason: connection timed out: /192.168.0.118:80; nested exception is io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80
+2023-09-14 18:11:04.754 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Reset module base url caused by connection error
+2023-09-14 18:11:04.757 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Error while exchange, cause: io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80, message: connection timed out: /192.168.0.118:80; nested exception is io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80
+2023-09-14 18:11:04.818  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:11:04.821  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:11:04.824  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:11:04.827  WARN 1980 --- [nioEventLoopGroup-3-3] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:11:04.830  WARN 1980 --- [nioEventLoopGroup-3-5] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:11:04.833  WARN 1980 --- [nioEventLoopGroup-3-4] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:11:05.785  INFO 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ManagerService  : Successful set base IP for module: SettingsDto(id=6501ea18f7cab1271d01c777, type=COMFORT_SALON, typeHash=1014, isTypeLocked=false, moduleMacAddress=3C:71:BF:4D:63:1C, serviceVersion=20230318.14, moduleFirmwareVersion=20230805.09, moduleIpAddress=192.168.0.118, serviceAddress=192.168.0.117:8888, moduleUpdateTimestamp=2023-09-13T19:59:52Z, serviceUpdateTimestamp=2023-09-14T18:11:12.492593400Z, connectionEstablish=false)
+2023-09-14 18:11:05.786  INFO 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Sending command: ModuleCommands(type=COMFORT_SALON, version=20230318.14, commandMap={bme280=Bme280CommandSet(super=CommandSet(commandType=READ, value=null))})
+2023-09-14 18:11:10.805 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Error while communicate with module, reason: connection timed out: /192.168.0.118:80; nested exception is io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80
+2023-09-14 18:11:10.807 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Reset module base url caused by connection error
+2023-09-14 18:11:10.808 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Error while exchange, cause: io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80, message: connection timed out: /192.168.0.118:80; nested exception is io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80
+2023-09-14 18:11:11.866  INFO 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ManagerService  : Successful set base IP for module: SettingsDto(id=6501ea18f7cab1271d01c777, type=COMFORT_SALON, typeHash=1014, isTypeLocked=false, moduleMacAddress=3C:71:BF:4D:63:1C, serviceVersion=20230318.14, moduleFirmwareVersion=20230805.09, moduleIpAddress=192.168.0.118, serviceAddress=192.168.0.117:8888, moduleUpdateTimestamp=2023-09-13T19:59:52Z, serviceUpdateTimestamp=2023-09-14T18:11:18.569941Z, connectionEstablish=false)
+2023-09-14 18:11:11.878  INFO 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Sending command: ModuleCommands(type=COMFORT_SALON, version=20230318.14, commandMap={bme280=Bme280CommandSet(super=CommandSet(commandType=READ, value=null))})
+2023-09-14 18:11:12.139 ERROR 1980 --- [reactor-http-nio-8] a.w.r.e.AbstractErrorWebExceptionHandler : [82987e6b-4]  500 Server Error for HTTP POST "/actors/bmw280/command?command=read"
+
+java.lang.IllegalArgumentException: Actor name: bmw280 not found
+	at pl.smarthouse.smartmodule.services.MaintenanceService.lambda$setActorCommand$0(MaintenanceService.java:35) ~[smart-module-3.3.jar:3.3]
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ Handler pl.smarthouse.smartmodule.controller.ActorsMaintenanceController#setActorCommand(String, String, String) [DispatcherHandler]
+	*__checkpoint ⇢ HTTP POST "/actors/bmw280/command?command=read" [ExceptionHandlingWebHandler]
+Original Stack Trace:
+		at pl.smarthouse.smartmodule.services.MaintenanceService.lambda$setActorCommand$0(MaintenanceService.java:35) ~[smart-module-3.3.jar:3.3]
+		at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:44) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4490) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onComplete(FluxSwitchIfEmpty.java:82) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.Operators.complete(Operators.java:137) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.MonoEmpty.subscribe(MonoEmpty.java:46) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:64) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:157) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.Operators$MonoSubscriber.complete(Operators.java:1802) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.MonoFlatMap$FlatMapInner.onNext(MonoFlatMap.java:249) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onNext(FluxOnErrorResume.java:79) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.FluxPeek$PeekSubscriber.onNext(FluxPeek.java:200) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.FluxPeek$PeekSubscriber.onNext(FluxPeek.java:200) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.complete(MonoIgnoreThen.java:292) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.onNext(MonoIgnoreThen.java:187) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.Operators$MonoSubscriber.complete(Operators.java:1802) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:151) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.Operators$MonoSubscriber.complete(Operators.java:1802) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.MonoZip$ZipCoordinator.signal(MonoZip.java:258) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.MonoZip$ZipInner.onNext(MonoZip.java:347) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onNext(MonoPeekTerminal.java:180) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.Operators$MonoSubscriber.complete(Operators.java:1802) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.FluxDefaultIfEmpty$DefaultIfEmptySubscriber.onComplete(FluxDefaultIfEmpty.java:109) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onComplete(FluxSwitchIfEmpty.java:85) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.Operators$MonoSubscriber.onComplete(Operators.java:1844) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.MonoSupplier.subscribe(MonoSupplier.java:59) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4490) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onComplete(FluxSwitchIfEmpty.java:82) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.Operators.complete(Operators.java:137) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.FluxFlatMap.trySubscribeScalarMap(FluxFlatMap.java:145) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.MonoFlatMap.subscribeOrReturn(MonoFlatMap.java:53) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4475) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.MonoZip.subscribe(MonoZip.java:129) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:64) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:52) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:240) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.onComplete(MonoIgnoreThen.java:203) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onComplete(MonoFlatMap.java:181) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.Operators.complete(Operators.java:137) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.MonoZip.subscribe(MonoZip.java:121) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4490) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:263) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:51) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:64) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:157) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onNext(FluxSwitchIfEmpty.java:74) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.MonoNext$NextSubscriber.onNext(MonoNext.java:82) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.FluxConcatMap$ConcatMapImmediate.innerNext(FluxConcatMap.java:282) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.FluxConcatMap$ConcatMapInner.onNext(FluxConcatMap.java:863) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onNext(FluxMapFuseable.java:129) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onNext(MonoPeekTerminal.java:180) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:2363) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.request(MonoPeekTerminal.java:139) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.request(FluxMapFuseable.java:171) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2159) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:2033) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onSubscribe(FluxMapFuseable.java:96) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onSubscribe(MonoPeekTerminal.java:152) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.MonoJust.subscribe(MonoJust.java:55) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4490) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.FluxConcatMap$ConcatMapImmediate.drain(FluxConcatMap.java:451) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.FluxConcatMap$ConcatMapImmediate.onSubscribe(FluxConcatMap.java:219) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:165) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:87) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:64) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:52) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4490) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:263) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:51) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:64) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.core.publisher.MonoDeferContextual.subscribe(MonoDeferContextual.java:55) ~[reactor-core-3.4.25.jar:3.4.25]
+		at reactor.netty.http.server.HttpServer$HttpServerHandle.onStateChange(HttpServer.java:993) ~[reactor-netty-http-1.0.25.jar:1.0.25]
+		at reactor.netty.ReactorNetty$CompositeConnectionObserver.onStateChange(ReactorNetty.java:677) ~[reactor-netty-core-1.0.25.jar:1.0.25]
+		at reactor.netty.transport.ServerTransport$ChildObserver.onStateChange(ServerTransport.java:477) ~[reactor-netty-core-1.0.25.jar:1.0.25]
+		at reactor.netty.http.server.HttpServerOperations.onInboundNext(HttpServerOperations.java:573) ~[reactor-netty-http-1.0.25.jar:1.0.25]
+		at reactor.netty.channel.ChannelOperationsHandler.channelRead(ChannelOperationsHandler.java:113) ~[reactor-netty-core-1.0.25.jar:1.0.25]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444) ~[netty-transport-4.1.85.Final.jar:4.1.85.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.85.Final.jar:4.1.85.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.85.Final.jar:4.1.85.Final]
+		at reactor.netty.http.server.HttpTrafficHandler.channelRead(HttpTrafficHandler.java:223) ~[reactor-netty-http-1.0.25.jar:1.0.25]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:442) ~[netty-transport-4.1.85.Final.jar:4.1.85.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.85.Final.jar:4.1.85.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.85.Final.jar:4.1.85.Final]
+		at io.netty.channel.CombinedChannelDuplexHandler$DelegatingChannelHandlerContext.fireChannelRead(CombinedChannelDuplexHandler.java:436) ~[netty-transport-4.1.85.Final.jar:4.1.85.Final]
+		at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:346) ~[netty-codec-4.1.85.Final.jar:4.1.85.Final]
+		at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:318) ~[netty-codec-4.1.85.Final.jar:4.1.85.Final]
+		at io.netty.channel.CombinedChannelDuplexHandler.channelRead(CombinedChannelDuplexHandler.java:251) ~[netty-transport-4.1.85.Final.jar:4.1.85.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:442) ~[netty-transport-4.1.85.Final.jar:4.1.85.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.85.Final.jar:4.1.85.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.85.Final.jar:4.1.85.Final]
+		at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410) ~[netty-transport-4.1.85.Final.jar:4.1.85.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:440) ~[netty-transport-4.1.85.Final.jar:4.1.85.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.85.Final.jar:4.1.85.Final]
+		at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919) ~[netty-transport-4.1.85.Final.jar:4.1.85.Final]
+		at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166) ~[netty-transport-4.1.85.Final.jar:4.1.85.Final]
+		at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:788) ~[netty-transport-4.1.85.Final.jar:4.1.85.Final]
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724) ~[netty-transport-4.1.85.Final.jar:4.1.85.Final]
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650) ~[netty-transport-4.1.85.Final.jar:4.1.85.Final]
+		at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562) ~[netty-transport-4.1.85.Final.jar:4.1.85.Final]
+		at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) ~[netty-common-4.1.85.Final.jar:4.1.85.Final]
+		at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.85.Final.jar:4.1.85.Final]
+		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.85.Final.jar:4.1.85.Final]
+		at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+
+2023-09-14 18:11:16.905 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Error while communicate with module, reason: connection timed out: /192.168.0.118:80; nested exception is io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80
+2023-09-14 18:11:16.908 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Reset module base url caused by connection error
+2023-09-14 18:11:16.911 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Error while exchange, cause: io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80, message: connection timed out: /192.168.0.118:80; nested exception is io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80
+2023-09-14 18:11:16.921  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:11:16.935  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:11:16.944  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:11:16.945  WARN 1980 --- [nioEventLoopGroup-3-4] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:11:16.956  WARN 1980 --- [nioEventLoopGroup-3-5] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:11:16.956  WARN 1980 --- [nioEventLoopGroup-3-4] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:11:17.948  INFO 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ManagerService  : Successful set base IP for module: SettingsDto(id=6501ea18f7cab1271d01c777, type=COMFORT_SALON, typeHash=1014, isTypeLocked=false, moduleMacAddress=3C:71:BF:4D:63:1C, serviceVersion=20230318.14, moduleFirmwareVersion=20230805.09, moduleIpAddress=192.168.0.118, serviceAddress=192.168.0.117:8888, moduleUpdateTimestamp=2023-09-13T19:59:52Z, serviceUpdateTimestamp=2023-09-14T18:11:24.653289Z, connectionEstablish=false)
+2023-09-14 18:11:17.949  INFO 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Sending command: ModuleCommands(type=COMFORT_SALON, version=20230318.14, commandMap={bme280=Bme280CommandSet(super=CommandSet(commandType=READ, value=null))})
+2023-09-14 18:11:22.969 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Error while communicate with module, reason: connection timed out: /192.168.0.118:80; nested exception is io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80
+2023-09-14 18:11:22.972 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Reset module base url caused by connection error
+2023-09-14 18:11:22.975 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Error while exchange, cause: io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80, message: connection timed out: /192.168.0.118:80; nested exception is io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80
+2023-09-14 18:11:23.574  INFO 1980 --- [boundedElastic-4] p.s.smartchain.processor.ChainProcessor  : Chain: Sync BME280 read with external comfort service, Current step: Read value from sensor type BME280, waiting for next condition: Wait if chain not enabled
+2023-09-14 18:11:23.575  WARN 1980 --- [boundedElastic-4] p.s.c.service.ExternalModuleService      : Sending to old comfort module will be skipped. Current zone is not handled by it.
+2023-09-14 18:11:23.576  INFO 1980 --- [boundedElastic-3] p.s.smartchain.processor.ChainProcessor  : Chain: Sync BME280 read with external comfort service, Current step: Standby, waiting for next condition: Waiting 30 seconds
+2023-09-14 18:11:24.058  INFO 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ManagerService  : Successful set base IP for module: SettingsDto(id=6501ea18f7cab1271d01c777, type=COMFORT_SALON, typeHash=1014, isTypeLocked=false, moduleMacAddress=3C:71:BF:4D:63:1C, serviceVersion=20230318.14, moduleFirmwareVersion=20230805.09, moduleIpAddress=192.168.0.118, serviceAddress=192.168.0.117:8888, moduleUpdateTimestamp=2023-09-13T19:59:52Z, serviceUpdateTimestamp=2023-09-14T18:11:30.757638100Z, connectionEstablish=false)
+2023-09-14 18:11:24.060  INFO 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Sending command: ModuleCommands(type=COMFORT_SALON, version=20230318.14, commandMap={bme280=Bme280CommandSet(super=CommandSet(commandType=READ, value=null))})
+2023-09-14 18:11:29.076 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Error while communicate with module, reason: connection timed out: /192.168.0.118:80; nested exception is io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80
+2023-09-14 18:11:29.077 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Reset module base url caused by connection error
+2023-09-14 18:11:29.077 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Error while exchange, cause: io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80, message: connection timed out: /192.168.0.118:80; nested exception is io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80
+2023-09-14 18:11:29.080  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:11:29.083  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:11:29.087  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:11:29.092  WARN 1980 --- [nioEventLoopGroup-3-5] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:11:29.094  WARN 1980 --- [nioEventLoopGroup-3-4] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:11:29.096  WARN 1980 --- [nioEventLoopGroup-3-3] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:11:30.113  INFO 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ManagerService  : Successful set base IP for module: SettingsDto(id=6501ea18f7cab1271d01c777, type=COMFORT_SALON, typeHash=1014, isTypeLocked=false, moduleMacAddress=3C:71:BF:4D:63:1C, serviceVersion=20230318.14, moduleFirmwareVersion=20230805.09, moduleIpAddress=192.168.0.118, serviceAddress=192.168.0.117:8888, moduleUpdateTimestamp=2023-09-13T19:59:52Z, serviceUpdateTimestamp=2023-09-14T18:11:36.817984800Z, connectionEstablish=false)
+2023-09-14 18:11:30.114  INFO 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Sending command: ModuleCommands(type=COMFORT_SALON, version=20230318.14, commandMap={bme280=Bme280CommandSet(super=CommandSet(commandType=READ, value=null))})
+2023-09-14 18:11:32.088  INFO 1980 --- [reactor-http-nio-1] p.s.smartmodule.services.ModuleService   : Sending command: ModuleCommands(type=COMFORT_SALON, version=20230318.14, commandMap={bme280=Bme280CommandSet(super=CommandSet(commandType=READ, value=null))})
+2023-09-14 18:11:35.123 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Error while communicate with module, reason: connection timed out: /192.168.0.118:80; nested exception is io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80
+2023-09-14 18:11:35.124 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Reset module base url caused by connection error
+2023-09-14 18:11:35.125 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Error while exchange, cause: io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80, message: connection timed out: /192.168.0.118:80; nested exception is io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80
+2023-09-14 18:11:36.194  INFO 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ManagerService  : Successful set base IP for module: SettingsDto(id=6501ea18f7cab1271d01c777, type=COMFORT_SALON, typeHash=1014, isTypeLocked=false, moduleMacAddress=3C:71:BF:4D:63:1C, serviceVersion=20230318.14, moduleFirmwareVersion=20230805.09, moduleIpAddress=192.168.0.118, serviceAddress=192.168.0.117:8888, moduleUpdateTimestamp=2023-09-13T19:59:52Z, serviceUpdateTimestamp=2023-09-14T18:11:42.899332600Z, connectionEstablish=false)
+2023-09-14 18:11:36.194  INFO 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Sending command: ModuleCommands(type=COMFORT_SALON, version=20230318.14, commandMap={bme280=Bme280CommandSet(super=CommandSet(commandType=READ, value=null))})
+2023-09-14 18:11:37.117 ERROR 1980 --- [reactor-http-nio-1] p.s.smartmodule.services.ModuleService   : Error while communicate with module, reason: connection timed out: /192.168.0.118:80; nested exception is io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80
+2023-09-14 18:11:37.119 ERROR 1980 --- [reactor-http-nio-1] p.s.smartmodule.services.ModuleService   : Reset module base url caused by connection error
+2023-09-14 18:11:37.121 ERROR 1980 --- [reactor-http-nio-1] p.s.smartmodule.services.ModuleService   : Error while exchange, cause: io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80, message: connection timed out: /192.168.0.118:80; nested exception is io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80
+2023-09-14 18:11:41.213 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Error while communicate with module, reason: connection timed out: /192.168.0.118:80; nested exception is io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80
+2023-09-14 18:11:41.215 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Reset module base url caused by connection error
+2023-09-14 18:11:41.216 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Error while exchange, cause: io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80, message: connection timed out: /192.168.0.118:80; nested exception is io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80
+2023-09-14 18:11:41.222  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:11:41.229  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:11:41.236  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:11:41.239  WARN 1980 --- [nioEventLoopGroup-3-3] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:11:41.245  WARN 1980 --- [nioEventLoopGroup-3-4] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:11:41.248  WARN 1980 --- [nioEventLoopGroup-3-3] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:11:43.620  INFO 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ManagerService  : Successful set base IP for module: SettingsDto(id=6501ea18f7cab1271d01c777, type=COMFORT_SALON, typeHash=1014, isTypeLocked=false, moduleMacAddress=3C:71:BF:4D:63:1C, serviceVersion=20230318.14, moduleFirmwareVersion=20230805.09, moduleIpAddress=192.168.0.118, serviceAddress=192.168.0.117:8888, moduleUpdateTimestamp=2023-09-13T19:59:52Z, serviceUpdateTimestamp=2023-09-14T18:11:50.327757500Z, connectionEstablish=false)
+2023-09-14 18:11:43.621  INFO 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Sending command: ModuleCommands(type=COMFORT_SALON, version=20230318.14, commandMap={bme280=Bme280CommandSet(super=CommandSet(commandType=READ, value=null))})
+2023-09-14 18:11:48.629 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Error while communicate with module, reason: connection timed out: /192.168.0.118:80; nested exception is io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80
+2023-09-14 18:11:48.630 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Reset module base url caused by connection error
+2023-09-14 18:11:48.631 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Error while exchange, cause: io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80, message: connection timed out: /192.168.0.118:80; nested exception is io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80
+2023-09-14 18:11:49.697  INFO 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ManagerService  : Successful set base IP for module: SettingsDto(id=6501ea18f7cab1271d01c777, type=COMFORT_SALON, typeHash=1014, isTypeLocked=false, moduleMacAddress=3C:71:BF:4D:63:1C, serviceVersion=20230318.14, moduleFirmwareVersion=20230805.09, moduleIpAddress=192.168.0.118, serviceAddress=192.168.0.117:8888, moduleUpdateTimestamp=2023-09-13T19:59:52Z, serviceUpdateTimestamp=2023-09-14T18:11:56.400104800Z, connectionEstablish=false)
+2023-09-14 18:11:49.703  INFO 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Sending command: ModuleCommands(type=COMFORT_SALON, version=20230318.14, commandMap={bme280=Bme280CommandSet(super=CommandSet(commandType=READ, value=null))})
+2023-09-14 18:11:53.862  WARN 1980 --- [boundedElastic-1] p.s.smartchain.processor.ChainProcessor  : Chain: Read BME280 sensor, Step: Read value from sensor type BME280 timeout. Chain reset to standby. StartTime: 2023-09-14T18:10:53.286476200, CurrentTime: 2023-09-14T18:11:53.862586400
+2023-09-14 18:11:53.865 ERROR 1980 --- [boundedElastic-1] p.s.smartchain.processor.ChainProcessor  : Current step: Read value from sensor type BME280 is timeout. Resetting chain to standby
+2023-09-14 18:11:53.867  INFO 1980 --- [boundedElastic-4] p.s.smartchain.processor.ChainProcessor  : Chain: Read BME280 sensor, Current step: Standby, waiting for next condition: Waiting 30 seconds
+2023-09-14 18:11:53.894  INFO 1980 --- [boundedElastic-1] p.s.smartchain.processor.ChainProcessor  : Chain: Sync BME280 read with external comfort service, Current step: Read value from sensor type BME280, waiting for next condition: Wait if chain not enabled
+2023-09-14 18:11:53.896  WARN 1980 --- [boundedElastic-1] p.s.c.service.ExternalModuleService      : Sending to old comfort module will be skipped. Current zone is not handled by it.
+2023-09-14 18:11:53.899  INFO 1980 --- [boundedElastic-3] p.s.smartchain.processor.ChainProcessor  : Chain: Sync BME280 read with external comfort service, Current step: Standby, waiting for next condition: Waiting 30 seconds
+2023-09-14 18:11:54.727 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Error while communicate with module, reason: connection timed out: /192.168.0.118:80; nested exception is io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80
+2023-09-14 18:11:54.728 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Reset module base url caused by connection error
+2023-09-14 18:11:54.730 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Error while exchange, cause: io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80, message: connection timed out: /192.168.0.118:80; nested exception is io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80
+2023-09-14 18:11:54.736  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:11:54.743  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:11:54.757  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:11:54.762  WARN 1980 --- [nioEventLoopGroup-3-3] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:11:54.773  WARN 1980 --- [nioEventLoopGroup-3-4] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:11:54.781  WARN 1980 --- [nioEventLoopGroup-3-3] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:11:55.782  INFO 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ManagerService  : Successful set base IP for module: SettingsDto(id=6501ea18f7cab1271d01c777, type=COMFORT_SALON, typeHash=1014, isTypeLocked=false, moduleMacAddress=3C:71:BF:4D:63:1C, serviceVersion=20230318.14, moduleFirmwareVersion=20230805.09, moduleIpAddress=192.168.0.118, serviceAddress=192.168.0.117:8888, moduleUpdateTimestamp=2023-09-13T19:59:52Z, serviceUpdateTimestamp=2023-09-14T18:12:02.484452800Z, connectionEstablish=false)
+2023-09-14 18:11:55.784  INFO 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Sending command: ModuleCommands(type=COMFORT_SALON, version=20230318.14, commandMap={bme280=Bme280CommandSet(super=CommandSet(commandType=READ, value=null))})
+2023-09-14 18:12:00.808 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Error while communicate with module, reason: connection timed out: /192.168.0.118:80; nested exception is io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80
+2023-09-14 18:12:00.811 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Reset module base url caused by connection error
+2023-09-14 18:12:00.814 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Error while exchange, cause: io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80, message: connection timed out: /192.168.0.118:80; nested exception is io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80
+2023-09-14 18:12:01.871  INFO 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ManagerService  : Successful set base IP for module: SettingsDto(id=6501ea18f7cab1271d01c777, type=COMFORT_SALON, typeHash=1014, isTypeLocked=false, moduleMacAddress=3C:71:BF:4D:63:1C, serviceVersion=20230318.14, moduleFirmwareVersion=20230805.09, moduleIpAddress=192.168.0.118, serviceAddress=192.168.0.117:8888, moduleUpdateTimestamp=2023-09-13T19:59:52Z, serviceUpdateTimestamp=2023-09-14T18:12:08.573801100Z, connectionEstablish=false)
+2023-09-14 18:12:01.872  INFO 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Sending command: ModuleCommands(type=COMFORT_SALON, version=20230318.14, commandMap={bme280=Bme280CommandSet(super=CommandSet(commandType=READ, value=null))})
+2023-09-14 18:12:06.897 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Error while communicate with module, reason: connection timed out: /192.168.0.118:80; nested exception is io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80
+2023-09-14 18:12:06.900 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Reset module base url caused by connection error
+2023-09-14 18:12:06.901 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Error while exchange, cause: io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80, message: connection timed out: /192.168.0.118:80; nested exception is io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80
+2023-09-14 18:12:06.908  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:12:06.916  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:12:06.923  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:12:07.245  WARN 1980 --- [nioEventLoopGroup-3-5] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:12:07.245  WARN 1980 --- [nioEventLoopGroup-3-3] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:12:07.250  WARN 1980 --- [nioEventLoopGroup-3-4] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:12:07.964  INFO 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ManagerService  : Successful set base IP for module: SettingsDto(id=6501ea18f7cab1271d01c777, type=COMFORT_SALON, typeHash=1014, isTypeLocked=false, moduleMacAddress=3C:71:BF:4D:63:1C, serviceVersion=20230318.14, moduleFirmwareVersion=20230805.09, moduleIpAddress=192.168.0.118, serviceAddress=192.168.0.117:8888, moduleUpdateTimestamp=2023-09-13T19:59:52Z, serviceUpdateTimestamp=2023-09-14T18:12:14.668149700Z, connectionEstablish=false)
+2023-09-14 18:12:07.966  INFO 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Sending command: ModuleCommands(type=COMFORT_SALON, version=20230318.14, commandMap={bme280=Bme280CommandSet(super=CommandSet(commandType=READ, value=null))})
+2023-09-14 18:12:12.991 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Error while communicate with module, reason: connection timed out: /192.168.0.118:80; nested exception is io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80
+2023-09-14 18:12:12.993 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Reset module base url caused by connection error
+2023-09-14 18:12:12.995 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Error while exchange, cause: io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80, message: connection timed out: /192.168.0.118:80; nested exception is io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80
+2023-09-14 18:12:14.042  INFO 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ManagerService  : Successful set base IP for module: SettingsDto(id=6501ea18f7cab1271d01c777, type=COMFORT_SALON, typeHash=1014, isTypeLocked=false, moduleMacAddress=3C:71:BF:4D:63:1C, serviceVersion=20230318.14, moduleFirmwareVersion=20230805.09, moduleIpAddress=192.168.0.118, serviceAddress=192.168.0.117:8888, moduleUpdateTimestamp=2023-09-13T19:59:52Z, serviceUpdateTimestamp=2023-09-14T18:12:20.748497400Z, connectionEstablish=false)
+2023-09-14 18:12:14.043  INFO 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Sending command: ModuleCommands(type=COMFORT_SALON, version=20230318.14, commandMap={bme280=Bme280CommandSet(super=CommandSet(commandType=READ, value=null))})
+2023-09-14 18:12:19.053 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Error while communicate with module, reason: connection timed out: /192.168.0.118:80; nested exception is io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80
+2023-09-14 18:12:19.054 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Reset module base url caused by connection error
+2023-09-14 18:12:19.054 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Error while exchange, cause: io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80, message: connection timed out: /192.168.0.118:80; nested exception is io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80
+2023-09-14 18:12:19.057  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:12:19.060  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:12:19.063  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:12:19.067  WARN 1980 --- [nioEventLoopGroup-3-4] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:12:19.070  WARN 1980 --- [nioEventLoopGroup-3-3] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:12:19.073  WARN 1980 --- [nioEventLoopGroup-3-5] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:12:20.095  INFO 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ManagerService  : Successful set base IP for module: SettingsDto(id=6501ea18f7cab1271d01c777, type=COMFORT_SALON, typeHash=1014, isTypeLocked=false, moduleMacAddress=3C:71:BF:4D:63:1C, serviceVersion=20230318.14, moduleFirmwareVersion=20230805.09, moduleIpAddress=192.168.0.118, serviceAddress=192.168.0.117:8888, moduleUpdateTimestamp=2023-09-13T19:59:52Z, serviceUpdateTimestamp=2023-09-14T18:12:26.800843600Z, connectionEstablish=false)
+2023-09-14 18:12:20.097  INFO 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Sending command: ModuleCommands(type=COMFORT_SALON, version=20230318.14, commandMap={bme280=Bme280CommandSet(super=CommandSet(commandType=READ, value=null))})
+2023-09-14 18:12:24.134  INFO 1980 --- [boundedElastic-1] p.s.smartchain.processor.ChainProcessor  : Chain: Read BME280 sensor, Current step: Read value from sensor type BME280, waiting for next condition: Wait until command read successful
+2023-09-14 18:12:24.166  INFO 1980 --- [boundedElastic-4] p.s.smartchain.processor.ChainProcessor  : Chain: Sync BME280 read with external comfort service, Current step: Read value from sensor type BME280, waiting for next condition: Wait if chain not enabled
+2023-09-14 18:12:24.167  WARN 1980 --- [boundedElastic-4] p.s.c.service.ExternalModuleService      : Sending to old comfort module will be skipped. Current zone is not handled by it.
+2023-09-14 18:12:24.168  INFO 1980 --- [boundedElastic-3] p.s.smartchain.processor.ChainProcessor  : Chain: Sync BME280 read with external comfort service, Current step: Standby, waiting for next condition: Waiting 30 seconds
+2023-09-14 18:12:25.107 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Error while communicate with module, reason: connection timed out: /192.168.0.118:80; nested exception is io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80
+2023-09-14 18:12:25.108 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Reset module base url caused by connection error
+2023-09-14 18:12:25.108 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Error while exchange, cause: io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80, message: connection timed out: /192.168.0.118:80; nested exception is io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80
+2023-09-14 18:12:27.603  INFO 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ManagerService  : Successful set base IP for module: SettingsDto(id=6501ea18f7cab1271d01c777, type=COMFORT_SALON, typeHash=1014, isTypeLocked=false, moduleMacAddress=3C:71:BF:4D:63:1C, serviceVersion=20230318.14, moduleFirmwareVersion=20230805.09, moduleIpAddress=192.168.0.118, serviceAddress=192.168.0.117:8888, moduleUpdateTimestamp=2023-09-13T19:59:52Z, serviceUpdateTimestamp=2023-09-14T18:12:34.310273100Z, connectionEstablish=false)
+2023-09-14 18:12:27.604  INFO 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Sending command: ModuleCommands(type=COMFORT_SALON, version=20230318.14, commandMap={bme280=Bme280CommandSet(super=CommandSet(commandType=READ, value=null))})
+2023-09-14 18:12:32.612 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Error while communicate with module, reason: connection timed out: /192.168.0.118:80; nested exception is io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80
+2023-09-14 18:12:32.613 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Reset module base url caused by connection error
+2023-09-14 18:12:32.615 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Error while exchange, cause: io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80, message: connection timed out: /192.168.0.118:80; nested exception is io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80
+2023-09-14 18:12:32.618  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:12:32.621  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:12:32.625  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:12:32.631  WARN 1980 --- [nioEventLoopGroup-3-5] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:12:32.633  WARN 1980 --- [nioEventLoopGroup-3-3] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:12:32.637  WARN 1980 --- [nioEventLoopGroup-3-4] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:12:34.024  INFO 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ManagerService  : Successful set base IP for module: SettingsDto(id=6501ea18f7cab1271d01c777, type=COMFORT_SALON, typeHash=1014, isTypeLocked=false, moduleMacAddress=3C:71:BF:4D:63:1C, serviceVersion=20230318.14, moduleFirmwareVersion=20230805.09, moduleIpAddress=192.168.0.118, serviceAddress=192.168.0.117:8888, moduleUpdateTimestamp=2023-09-13T19:59:52Z, serviceUpdateTimestamp=2023-09-14T18:12:40.730640300Z, connectionEstablish=false)
+2023-09-14 18:12:34.025  INFO 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Sending command: ModuleCommands(type=COMFORT_SALON, version=20230318.14, commandMap={bme280=Bme280CommandSet(super=CommandSet(commandType=READ, value=null))})
+2023-09-14 18:12:39.039 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Error while communicate with module, reason: connection timed out: /192.168.0.118:80; nested exception is io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80
+2023-09-14 18:12:39.067 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Reset module base url caused by connection error
+2023-09-14 18:12:39.070 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Error while exchange, cause: io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80, message: connection timed out: /192.168.0.118:80; nested exception is io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80
+2023-09-14 18:12:40.117  INFO 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ManagerService  : Successful set base IP for module: SettingsDto(id=6501ea18f7cab1271d01c777, type=COMFORT_SALON, typeHash=1014, isTypeLocked=false, moduleMacAddress=3C:71:BF:4D:63:1C, serviceVersion=20230318.14, moduleFirmwareVersion=20230805.09, moduleIpAddress=192.168.0.118, serviceAddress=192.168.0.117:8888, moduleUpdateTimestamp=2023-09-13T19:59:52Z, serviceUpdateTimestamp=2023-09-14T18:12:46.821988800Z, connectionEstablish=false)
+2023-09-14 18:12:40.118  INFO 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Sending command: ModuleCommands(type=COMFORT_SALON, version=20230318.14, commandMap={bme280=Bme280CommandSet(super=CommandSet(commandType=READ, value=null))})
+2023-09-14 18:12:45.128 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Error while communicate with module, reason: connection timed out: /192.168.0.118:80; nested exception is io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80
+2023-09-14 18:12:45.131 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Reset module base url caused by connection error
+2023-09-14 18:12:45.134 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Error while exchange, cause: io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80, message: connection timed out: /192.168.0.118:80; nested exception is io.netty.channel.ConnectTimeoutException: connection timed out: /192.168.0.118:80
+2023-09-14 18:12:45.144  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:12:45.152  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:12:45.160  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:12:45.167  WARN 1980 --- [nioEventLoopGroup-3-4] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:12:45.176  WARN 1980 --- [nioEventLoopGroup-3-3] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:12:45.176  WARN 1980 --- [nioEventLoopGroup-3-5] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:12:46.199  INFO 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ManagerService  : Successful set base IP for module: SettingsDto(id=6501ea18f7cab1271d01c777, type=, typeHash=0, isTypeLocked=false, moduleMacAddress=3C:71:BF:4D:63:1C, serviceVersion=, moduleFirmwareVersion=20230805.09, moduleIpAddress=192.168.0.118, serviceAddress=192.168.0.117:8888, moduleUpdateTimestamp=2023-09-14T18:12:48.851Z, serviceUpdateTimestamp=2023-09-14T18:12:52.901336500Z, connectionEstablish=false)
+2023-09-14 18:12:46.200  INFO 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Sending command: ModuleCommands(type=COMFORT_SALON, version=20230318.14, commandMap={bme280=Bme280CommandSet(super=CommandSet(commandType=READ, value=null))})
+2023-09-14 18:12:46.485  INFO 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Configuration is missing in module. Will be send. Message:Module configuration is missing
+2023-09-14 18:12:46.490 ERROR 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Device respond error: Module configuration is missing
+2023-09-14 18:12:47.505  INFO 1980 --- [scheduling-1] p.s.smartmodule.services.ModuleService   : Sending command: ModuleCommands(type=COMFORT_SALON, version=20230318.14, commandMap={bme280=Bme280CommandSet(super=CommandSet(commandType=READ, value=null))})
+2023-09-14 18:12:51.401  INFO 1980 --- [boundedElastic-4] p.s.smartchain.processor.ChainProcessor  : Chain: Read BME280 sensor, Current step: Set BME280 command to NO_ACTION, waiting for next condition: Wait if chain not enabled
+2023-09-14 18:12:51.411  INFO 1980 --- [boundedElastic-1] p.s.smartchain.processor.ChainProcessor  : Chain: Read BME280 sensor, Current step: Standby, waiting for next condition: Waiting 30 seconds
+2023-09-14 18:12:54.489  INFO 1980 --- [boundedElastic-4] p.s.smartchain.processor.ChainProcessor  : Chain: Sync BME280 read with external comfort service, Current step: Read value from sensor type BME280, waiting for next condition: Wait if chain not enabled
+2023-09-14 18:12:54.492  WARN 1980 --- [boundedElastic-4] p.s.c.service.ExternalModuleService      : Sending to old comfort module will be skipped. Current zone is not handled by it.
+2023-09-14 18:12:54.497  INFO 1980 --- [boundedElastic-3] p.s.smartchain.processor.ChainProcessor  : Chain: Sync BME280 read with external comfort service, Current step: Standby, waiting for next condition: Waiting 30 seconds
+2023-09-14 18:12:55.166  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:12:55.180  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:12:55.193  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:12:55.195  WARN 1980 --- [nioEventLoopGroup-3-5] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:12:55.200  WARN 1980 --- [nioEventLoopGroup-3-3] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:12:55.204  WARN 1980 --- [nioEventLoopGroup-3-5] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:13:01.417  INFO 1980 --- [nioEventLoopGroup-3-5] p.s.s.service.MonitoringService          : Save dao object successful
+2023-09-14 18:13:05.190  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:13:05.194  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:13:05.198  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:13:05.201  WARN 1980 --- [nioEventLoopGroup-3-5] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:13:05.202  WARN 1980 --- [nioEventLoopGroup-3-3] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:13:05.208  WARN 1980 --- [nioEventLoopGroup-3-4] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:13:07.036  INFO 1980 --- [reactor-http-nio-3] p.s.smartmodule.services.ModuleService   : Sending command: ModuleCommands(type=COMFORT_SALON, version=20230318.14, commandMap={bme280=Bme280CommandSet(super=CommandSet(commandType=READ, value=null))})
+2023-09-14 18:13:07.368  INFO 1980 --- [scheduling-1] p.s.smartmodule.services.ModuleService   : Sending command: ModuleCommands(type=COMFORT_SALON, version=20230318.14, commandMap={bme280=Bme280CommandSet(super=CommandSet(commandType=READ, value=null))})
+2023-09-14 18:13:09.473  INFO 1980 --- [scheduling-1] p.s.smartmodule.services.ModuleService   : Sending command: ModuleCommands(type=COMFORT_SALON, version=20230318.14, commandMap={bme280=Bme280CommandSet(super=CommandSet(commandType=READ, value=null))})
+2023-09-14 18:13:11.595  INFO 1980 --- [scheduling-1] p.s.smartmodule.services.ModuleService   : Sending command: ModuleCommands(type=COMFORT_SALON, version=20230318.14, commandMap={bme280=Bme280CommandSet(super=CommandSet(commandType=READ, value=null))})
+2023-09-14 18:13:12.715  INFO 1980 --- [scheduling-1] p.s.smartmodule.services.ModuleService   : Sending command: ModuleCommands(type=COMFORT_SALON, version=20230318.14, commandMap={bme280=Bme280CommandSet(super=CommandSet(commandType=READ, value=null))})
+2023-09-14 18:13:14.866  INFO 1980 --- [scheduling-1] p.s.smartmodule.services.ModuleService   : Sending command: ModuleCommands(type=COMFORT_SALON, version=20230318.14, commandMap={bme280=Bme280CommandSet(super=CommandSet(commandType=READ, value=null))})
+2023-09-14 18:13:15.315  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:13:15.327  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:13:15.335  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:13:15.339  WARN 1980 --- [nioEventLoopGroup-3-4] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:13:15.346  WARN 1980 --- [nioEventLoopGroup-3-3] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:13:15.355  WARN 1980 --- [nioEventLoopGroup-3-4] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:13:16.313  INFO 1980 --- [scheduling-1] p.s.smartmodule.services.ModuleService   : Sending command: ModuleCommands(type=COMFORT_SALON, version=20230318.14, commandMap={bme280=Bme280CommandSet(super=CommandSet(commandType=READ, value=null))})
+2023-09-14 18:13:17.637  INFO 1980 --- [scheduling-1] p.s.smartmodule.services.ModuleService   : Sending command: ModuleCommands(type=COMFORT_SALON, version=20230318.14, commandMap={bme280=Bme280CommandSet(super=CommandSet(commandType=READ, value=null))})
+2023-09-14 18:13:18.768  INFO 1980 --- [scheduling-1] p.s.smartmodule.services.ModuleService   : Sending command: ModuleCommands(type=COMFORT_SALON, version=20230318.14, commandMap={bme280=Bme280CommandSet(super=CommandSet(commandType=READ, value=null))})
+2023-09-14 18:13:19.876  INFO 1980 --- [scheduling-1] p.s.smartmodule.services.ModuleService   : Sending command: ModuleCommands(type=COMFORT_SALON, version=20230318.14, commandMap={bme280=Bme280CommandSet(super=CommandSet(commandType=READ, value=null))})
+2023-09-14 18:13:21.706  INFO 1980 --- [boundedElastic-4] p.s.smartchain.processor.ChainProcessor  : Chain: Read BME280 sensor, Current step: Read value from sensor type BME280, waiting for next condition: Wait until command read successful
+2023-09-14 18:13:22.593  INFO 1980 --- [scheduling-1] p.s.smartmodule.services.ModuleService   : Sending command: ModuleCommands(type=COMFORT_SALON, version=20230318.14, commandMap={bme280=Bme280CommandSet(super=CommandSet(commandType=READ, value=null))})
+2023-09-14 18:13:22.719  INFO 1980 --- [boundedElastic-1] p.s.smartchain.processor.ChainProcessor  : Chain: Read BME280 sensor, Current step: Set BME280 command to NO_ACTION, waiting for next condition: Wait if chain not enabled
+2023-09-14 18:13:22.720  INFO 1980 --- [boundedElastic-4] p.s.smartchain.processor.ChainProcessor  : Chain: Read BME280 sensor, Current step: Standby, waiting for next condition: Waiting 30 seconds
+2023-09-14 18:13:24.771  INFO 1980 --- [boundedElastic-1] p.s.smartchain.processor.ChainProcessor  : Chain: Sync BME280 read with external comfort service, Current step: Read value from sensor type BME280, waiting for next condition: Wait if chain not enabled
+2023-09-14 18:13:24.772  WARN 1980 --- [boundedElastic-1] p.s.c.service.ExternalModuleService      : Sending to old comfort module will be skipped. Current zone is not handled by it.
+2023-09-14 18:13:24.773  INFO 1980 --- [boundedElastic-3] p.s.smartchain.processor.ChainProcessor  : Chain: Sync BME280 read with external comfort service, Current step: Standby, waiting for next condition: Waiting 30 seconds
+2023-09-14 18:13:25.337  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:13:25.343  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:13:25.351  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:13:25.356  WARN 1980 --- [nioEventLoopGroup-3-3] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:13:25.356  WARN 1980 --- [nioEventLoopGroup-3-4] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:13:25.369  WARN 1980 --- [nioEventLoopGroup-3-5] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:13:35.351  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:13:35.359  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:13:35.366  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:13:35.370  WARN 1980 --- [nioEventLoopGroup-3-5] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:13:35.377  WARN 1980 --- [nioEventLoopGroup-3-3] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:13:35.385  WARN 1980 --- [nioEventLoopGroup-3-5] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:13:45.592  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:13:45.598  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:13:45.603  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:13:45.606  WARN 1980 --- [nioEventLoopGroup-3-5] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:13:45.607  WARN 1980 --- [nioEventLoopGroup-3-3] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:13:45.613  WARN 1980 --- [nioEventLoopGroup-3-4] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:13:53.055  INFO 1980 --- [boundedElastic-1] p.s.smartchain.processor.ChainProcessor  : Chain: Read BME280 sensor, Current step: Read value from sensor type BME280, waiting for next condition: Wait until command read successful
+2023-09-14 18:13:53.692  INFO 1980 --- [scheduling-1] p.s.smartmodule.services.ModuleService   : Sending command: ModuleCommands(type=COMFORT_SALON, version=20230318.14, commandMap={bme280=Bme280CommandSet(super=CommandSet(commandType=READ, value=null))})
+2023-09-14 18:13:54.068  INFO 1980 --- [boundedElastic-4] p.s.smartchain.processor.ChainProcessor  : Chain: Read BME280 sensor, Current step: Set BME280 command to NO_ACTION, waiting for next condition: Wait if chain not enabled
+2023-09-14 18:13:54.073  INFO 1980 --- [boundedElastic-1] p.s.smartchain.processor.ChainProcessor  : Chain: Read BME280 sensor, Current step: Standby, waiting for next condition: Waiting 30 seconds
+2023-09-14 18:13:55.084  INFO 1980 --- [boundedElastic-4] p.s.smartchain.processor.ChainProcessor  : Chain: Sync BME280 read with external comfort service, Current step: Read value from sensor type BME280, waiting for next condition: Wait if chain not enabled
+2023-09-14 18:13:55.093  WARN 1980 --- [boundedElastic-4] p.s.c.service.ExternalModuleService      : Sending to old comfort module will be skipped. Current zone is not handled by it.
+2023-09-14 18:13:55.095  INFO 1980 --- [boundedElastic-3] p.s.smartchain.processor.ChainProcessor  : Chain: Sync BME280 read with external comfort service, Current step: Standby, waiting for next condition: Waiting 30 seconds
+2023-09-14 18:13:55.605  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:13:55.620  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:13:55.634  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:13:56.603  WARN 1980 --- [nioEventLoopGroup-3-5] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:13:56.605  WARN 1980 --- [nioEventLoopGroup-3-3] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:13:56.606  WARN 1980 --- [nioEventLoopGroup-3-4] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:14:05.632  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:14:05.638  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:14:05.644  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:14:07.587  WARN 1980 --- [nioEventLoopGroup-3-5] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:14:07.588  WARN 1980 --- [nioEventLoopGroup-3-4] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:14:07.590  WARN 1980 --- [nioEventLoopGroup-3-3] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:14:15.647  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:14:15.658  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:14:15.672  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:14:15.677  WARN 1980 --- [nioEventLoopGroup-3-3] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:14:15.688  WARN 1980 --- [nioEventLoopGroup-3-4] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:14:15.694  WARN 1980 --- [nioEventLoopGroup-3-3] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:14:20.555  INFO 1980 --- [reactor-http-nio-7] p.s.smartmodule.services.ModuleService   : Sending command: ModuleCommands(type=COMFORT_SALON, version=20230318.14, commandMap={bme280=Bme280CommandSet(super=CommandSet(commandType=READ, value=null))})
+2023-09-14 18:14:20.606  INFO 1980 --- [scheduling-1] p.s.smartmodule.services.ModuleService   : Sending command: ModuleCommands(type=COMFORT_SALON, version=20230318.14, commandMap={bme280=Bme280CommandSet(super=CommandSet(commandType=READ, value=null))})
+2023-09-14 18:14:21.792  INFO 1980 --- [scheduling-1] p.s.smartmodule.services.ModuleService   : Sending command: ModuleCommands(type=COMFORT_SALON, version=20230318.14, commandMap={bme280=Bme280CommandSet(super=CommandSet(commandType=READ, value=null))})
+2023-09-14 18:14:23.036  INFO 1980 --- [scheduling-1] p.s.smartmodule.services.ModuleService   : Sending command: ModuleCommands(type=COMFORT_SALON, version=20230318.14, commandMap={bme280=Bme280CommandSet(super=CommandSet(commandType=READ, value=null))})
+2023-09-14 18:14:24.117  INFO 1980 --- [scheduling-1] p.s.smartmodule.services.ModuleService   : Sending command: ModuleCommands(type=COMFORT_SALON, version=20230318.14, commandMap={bme280=Bme280CommandSet(super=CommandSet(commandType=READ, value=null))})
+2023-09-14 18:14:24.321  INFO 1980 --- [boundedElastic-4] p.s.smartchain.processor.ChainProcessor  : Chain: Read BME280 sensor, Current step: Read value from sensor type BME280, waiting for next condition: Wait until command read successful
+2023-09-14 18:14:25.239  INFO 1980 --- [scheduling-1] p.s.smartmodule.services.ModuleService   : Sending command: ModuleCommands(type=COMFORT_SALON, version=20230318.14, commandMap={bme280=Bme280CommandSet(super=CommandSet(commandType=READ, value=null))})
+2023-09-14 18:14:25.412  INFO 1980 --- [boundedElastic-1] p.s.smartchain.processor.ChainProcessor  : Chain: Sync BME280 read with external comfort service, Current step: Read value from sensor type BME280, waiting for next condition: Wait if chain not enabled
+2023-09-14 18:14:25.416  WARN 1980 --- [boundedElastic-1] p.s.c.service.ExternalModuleService      : Sending to old comfort module will be skipped. Current zone is not handled by it.
+2023-09-14 18:14:25.420  INFO 1980 --- [boundedElastic-3] p.s.smartchain.processor.ChainProcessor  : Chain: Sync BME280 read with external comfort service, Current step: Standby, waiting for next condition: Waiting 30 seconds
+2023-09-14 18:14:25.667  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:14:25.680  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:14:25.694  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:14:25.698  WARN 1980 --- [nioEventLoopGroup-3-3] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:14:25.706  WARN 1980 --- [nioEventLoopGroup-3-4] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:14:25.713  WARN 1980 --- [nioEventLoopGroup-3-3] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:14:26.347  INFO 1980 --- [boundedElastic-1] p.s.smartchain.processor.ChainProcessor  : Chain: Read BME280 sensor, Current step: Set BME280 command to NO_ACTION, waiting for next condition: Wait if chain not enabled
+2023-09-14 18:14:26.352  INFO 1980 --- [boundedElastic-4] p.s.smartchain.processor.ChainProcessor  : Chain: Read BME280 sensor, Current step: Standby, waiting for next condition: Waiting 30 seconds
+2023-09-14 18:14:35.683  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:14:35.698  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:14:35.711  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:14:35.715  WARN 1980 --- [nioEventLoopGroup-3-3] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:14:35.726  WARN 1980 --- [nioEventLoopGroup-3-4] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:14:35.732  WARN 1980 --- [nioEventLoopGroup-3-3] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:14:45.703  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:14:45.712  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:14:45.728  WARN 1980 --- [nioEventLoopGroup-3-3] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:14:45.734  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:14:45.735  WARN 1980 --- [nioEventLoopGroup-3-4] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:14:45.752  WARN 1980 --- [nioEventLoopGroup-3-4] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:14:55.730  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:14:55.741  INFO 1980 --- [boundedElastic-1] p.s.smartchain.processor.ChainProcessor  : Chain: Sync BME280 read with external comfort service, Current step: Read value from sensor type BME280, waiting for next condition: Wait if chain not enabled
+2023-09-14 18:14:55.744  WARN 1980 --- [boundedElastic-1] p.s.c.service.ExternalModuleService      : Sending to old comfort module will be skipped. Current zone is not handled by it.
+2023-09-14 18:14:55.745  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:14:55.748  INFO 1980 --- [boundedElastic-3] p.s.smartchain.processor.ChainProcessor  : Chain: Sync BME280 read with external comfort service, Current step: Standby, waiting for next condition: Waiting 30 seconds
+2023-09-14 18:14:55.758  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:14:55.761  WARN 1980 --- [nioEventLoopGroup-3-4] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:14:55.771  WARN 1980 --- [nioEventLoopGroup-3-3] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:14:55.771  WARN 1980 --- [nioEventLoopGroup-3-4] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:14:56.673  INFO 1980 --- [boundedElastic-1] p.s.smartchain.processor.ChainProcessor  : Chain: Read BME280 sensor, Current step: Read value from sensor type BME280, waiting for next condition: Wait until command read successful
+2023-09-14 18:14:57.641  INFO 1980 --- [scheduling-1] p.s.smartmodule.services.ModuleService   : Sending command: ModuleCommands(type=COMFORT_SALON, version=20230318.14, commandMap={bme280=Bme280CommandSet(super=CommandSet(commandType=READ, value=null))})
+2023-09-14 18:14:59.713  INFO 1980 --- [boundedElastic-4] p.s.smartchain.processor.ChainProcessor  : Chain: Read BME280 sensor, Current step: Set BME280 command to NO_ACTION, waiting for next condition: Wait if chain not enabled
+2023-09-14 18:14:59.718  INFO 1980 --- [boundedElastic-1] p.s.smartchain.processor.ChainProcessor  : Chain: Read BME280 sensor, Current step: Standby, waiting for next condition: Waiting 30 seconds
+2023-09-14 18:15:05.751  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:15:05.760  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:15:05.769  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:15:05.778  WARN 1980 --- [nioEventLoopGroup-3-4] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:15:05.784  WARN 1980 --- [nioEventLoopGroup-3-3] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:15:05.789  WARN 1980 --- [nioEventLoopGroup-3-5] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:15:15.774  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:15:15.780  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:15:15.785  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:15:15.788  WARN 1980 --- [nioEventLoopGroup-3-5] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:15:15.795  WARN 1980 --- [nioEventLoopGroup-3-3] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:15:15.806  WARN 1980 --- [nioEventLoopGroup-3-4] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:15:25.787  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:15:25.795  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:15:25.804  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:15:25.813  WARN 1980 --- [nioEventLoopGroup-3-4] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:15:25.818  WARN 1980 --- [nioEventLoopGroup-3-3] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:15:25.826  WARN 1980 --- [nioEventLoopGroup-3-5] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:15:26.112  INFO 1980 --- [boundedElastic-4] p.s.smartchain.processor.ChainProcessor  : Chain: Sync BME280 read with external comfort service, Current step: Read value from sensor type BME280, waiting for next condition: Wait if chain not enabled
+2023-09-14 18:15:26.113  WARN 1980 --- [boundedElastic-4] p.s.c.service.ExternalModuleService      : Sending to old comfort module will be skipped. Current zone is not handled by it.
+2023-09-14 18:15:26.114  INFO 1980 --- [boundedElastic-3] p.s.smartchain.processor.ChainProcessor  : Chain: Sync BME280 read with external comfort service, Current step: Standby, waiting for next condition: Waiting 30 seconds
+2023-09-14 18:15:30.042  INFO 1980 --- [boundedElastic-4] p.s.smartchain.processor.ChainProcessor  : Chain: Read BME280 sensor, Current step: Read value from sensor type BME280, waiting for next condition: Wait until command read successful
+2023-09-14 18:15:30.647  INFO 1980 --- [scheduling-1] p.s.smartmodule.services.ModuleService   : Sending command: ModuleCommands(type=COMFORT_SALON, version=20230318.14, commandMap={bme280=Bme280CommandSet(super=CommandSet(commandType=READ, value=null))})
+2023-09-14 18:15:32.058  INFO 1980 --- [boundedElastic-1] p.s.smartchain.processor.ChainProcessor  : Chain: Read BME280 sensor, Current step: Set BME280 command to NO_ACTION, waiting for next condition: Wait if chain not enabled
+2023-09-14 18:15:32.060  INFO 1980 --- [boundedElastic-4] p.s.smartchain.processor.ChainProcessor  : Chain: Read BME280 sensor, Current step: Standby, waiting for next condition: Waiting 30 seconds
+2023-09-14 18:15:35.802  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:15:35.831  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:15:35.843  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:15:35.844  WARN 1980 --- [nioEventLoopGroup-3-5] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:15:35.849  WARN 1980 --- [nioEventLoopGroup-3-3] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:15:35.852  WARN 1980 --- [nioEventLoopGroup-3-5] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:15:46.594  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:15:46.602  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:15:46.613  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:15:46.615  WARN 1980 --- [nioEventLoopGroup-3-5] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:15:46.618  WARN 1980 --- [nioEventLoopGroup-3-3] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:15:46.624  WARN 1980 --- [nioEventLoopGroup-3-5] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:15:56.389  INFO 1980 --- [boundedElastic-1] p.s.smartchain.processor.ChainProcessor  : Chain: Sync BME280 read with external comfort service, Current step: Read value from sensor type BME280, waiting for next condition: Wait if chain not enabled
+2023-09-14 18:15:56.390  WARN 1980 --- [boundedElastic-1] p.s.c.service.ExternalModuleService      : Sending to old comfort module will be skipped. Current zone is not handled by it.
+2023-09-14 18:15:56.391  INFO 1980 --- [boundedElastic-3] p.s.smartchain.processor.ChainProcessor  : Chain: Sync BME280 read with external comfort service, Current step: Standby, waiting for next condition: Waiting 30 seconds
+2023-09-14 18:15:56.611  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:15:56.617  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:15:56.621  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:15:57.584  WARN 1980 --- [nioEventLoopGroup-3-5] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:15:57.585  WARN 1980 --- [nioEventLoopGroup-3-4] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:15:57.585  WARN 1980 --- [nioEventLoopGroup-3-3] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:16:02.322  INFO 1980 --- [boundedElastic-1] p.s.smartchain.processor.ChainProcessor  : Chain: Read BME280 sensor, Current step: Read value from sensor type BME280, waiting for next condition: Wait until command read successful
+2023-09-14 18:16:02.623  INFO 1980 --- [scheduling-1] p.s.smartmodule.services.ModuleService   : Sending command: ModuleCommands(type=COMFORT_SALON, version=20230318.14, commandMap={bme280=Bme280CommandSet(super=CommandSet(commandType=READ, value=null))})
+2023-09-14 18:16:04.337  INFO 1980 --- [boundedElastic-4] p.s.smartchain.processor.ChainProcessor  : Chain: Read BME280 sensor, Current step: Set BME280 command to NO_ACTION, waiting for next condition: Wait if chain not enabled
+2023-09-14 18:16:04.338  INFO 1980 --- [boundedElastic-1] p.s.smartchain.processor.ChainProcessor  : Chain: Read BME280 sensor, Current step: Standby, waiting for next condition: Waiting 30 seconds
+2023-09-14 18:16:06.618  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:16:06.634  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:16:06.637  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:16:09.233  WARN 1980 --- [nioEventLoopGroup-3-5] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:16:10.083  WARN 1980 --- [nioEventLoopGroup-3-3] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:16:11.932  WARN 1980 --- [nioEventLoopGroup-3-4] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:16:16.627  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:16:16.636  WARN 1980 --- [nioEventLoopGroup-3-4] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:16:16.643  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:16:16.646  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:16:16.652  WARN 1980 --- [nioEventLoopGroup-3-4] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:16:16.659  WARN 1980 --- [nioEventLoopGroup-3-3] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:16:26.645  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:16:26.649  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:16:26.652  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:16:26.656  WARN 1980 --- [nioEventLoopGroup-3-3] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:16:26.659  WARN 1980 --- [nioEventLoopGroup-3-4] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:16:26.665  WARN 1980 --- [nioEventLoopGroup-3-5] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:16:26.675  INFO 1980 --- [boundedElastic-4] p.s.smartchain.processor.ChainProcessor  : Chain: Sync BME280 read with external comfort service, Current step: Read value from sensor type BME280, waiting for next condition: Wait if chain not enabled
+2023-09-14 18:16:26.676  WARN 1980 --- [boundedElastic-4] p.s.c.service.ExternalModuleService      : Sending to old comfort module will be skipped. Current zone is not handled by it.
+2023-09-14 18:16:26.677  INFO 1980 --- [boundedElastic-3] p.s.smartchain.processor.ChainProcessor  : Chain: Sync BME280 read with external comfort service, Current step: Standby, waiting for next condition: Waiting 30 seconds
+2023-09-14 18:16:34.636  INFO 1980 --- [boundedElastic-4] p.s.smartchain.processor.ChainProcessor  : Chain: Read BME280 sensor, Current step: Read value from sensor type BME280, waiting for next condition: Wait until command read successful
+2023-09-14 18:16:35.222  INFO 1980 --- [scheduling-1] p.s.smartmodule.services.ModuleService   : Sending command: ModuleCommands(type=COMFORT_SALON, version=20230318.14, commandMap={bme280=Bme280CommandSet(super=CommandSet(commandType=READ, value=null))})
+2023-09-14 18:16:36.655  INFO 1980 --- [boundedElastic-1] p.s.smartchain.processor.ChainProcessor  : Chain: Read BME280 sensor, Current step: Set BME280 command to NO_ACTION, waiting for next condition: Wait if chain not enabled
+2023-09-14 18:16:36.656  INFO 1980 --- [boundedElastic-4] p.s.smartchain.processor.ChainProcessor  : Chain: Read BME280 sensor, Current step: Standby, waiting for next condition: Waiting 30 seconds
+2023-09-14 18:16:36.657  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:16:36.660  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:16:36.663  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:16:36.666  WARN 1980 --- [nioEventLoopGroup-3-5] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:16:36.671  WARN 1980 --- [nioEventLoopGroup-3-4] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:16:36.672  WARN 1980 --- [nioEventLoopGroup-3-3] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:16:46.679  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:16:46.698  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:16:46.704  WARN 1980 --- [nioEventLoopGroup-3-3] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:16:46.712  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:16:46.720  WARN 1980 --- [nioEventLoopGroup-3-4] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:16:46.739  WARN 1980 --- [nioEventLoopGroup-3-4] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:16:56.701  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:16:56.711  WARN 1980 --- [nioEventLoopGroup-3-4] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:16:56.717  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:16:56.727  WARN 1980 --- [nioEventLoopGroup-3-4] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:16:56.732  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:16:56.744  WARN 1980 --- [nioEventLoopGroup-3-4] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:16:56.921  INFO 1980 --- [boundedElastic-1] p.s.smartchain.processor.ChainProcessor  : Chain: Sync BME280 read with external comfort service, Current step: Read value from sensor type BME280, waiting for next condition: Wait if chain not enabled
+2023-09-14 18:16:56.923  WARN 1980 --- [boundedElastic-1] p.s.c.service.ExternalModuleService      : Sending to old comfort module will be skipped. Current zone is not handled by it.
+2023-09-14 18:16:56.925  INFO 1980 --- [boundedElastic-3] p.s.smartchain.processor.ChainProcessor  : Chain: Sync BME280 read with external comfort service, Current step: Standby, waiting for next condition: Waiting 30 seconds
+2023-09-14 18:17:06.720  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:17:06.723  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:17:06.735  WARN 1980 --- [nioEventLoopGroup-3-4] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:17:06.735  WARN 1980 --- [nioEventLoopGroup-3-3] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:17:06.750  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:17:06.763  WARN 1980 --- [nioEventLoopGroup-3-3] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:17:06.941  INFO 1980 --- [boundedElastic-1] p.s.smartchain.processor.ChainProcessor  : Chain: Read BME280 sensor, Current step: Read value from sensor type BME280, waiting for next condition: Wait until command read successful
+2023-09-14 18:17:07.700  INFO 1980 --- [scheduling-1] p.s.smartmodule.services.ModuleService   : Sending command: ModuleCommands(type=COMFORT_SALON, version=20230318.14, commandMap={bme280=Bme280CommandSet(super=CommandSet(commandType=READ, value=null))})
+2023-09-14 18:17:07.948  INFO 1980 --- [boundedElastic-4] p.s.smartchain.processor.ChainProcessor  : Chain: Read BME280 sensor, Current step: Set BME280 command to NO_ACTION, waiting for next condition: Wait if chain not enabled
+2023-09-14 18:17:07.950  INFO 1980 --- [boundedElastic-1] p.s.smartchain.processor.ChainProcessor  : Chain: Read BME280 sensor, Current step: Standby, waiting for next condition: Waiting 30 seconds
+2023-09-14 18:17:16.734  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:17:16.739  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:17:16.748  WARN 1980 --- [nioEventLoopGroup-3-3] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:17:16.752  WARN 1980 --- [nioEventLoopGroup-3-4] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
+2023-09-14 18:17:16.766  INFO 1980 --- [scheduling-1] p.s.c.s.ComfortModuleParamsService       : Get module params from collection: comfort_salon_settings
+2023-09-14 18:17:16.777  WARN 1980 --- [nioEventLoopGroup-3-4] p.s.c.s.ComfortModuleParamsService       : No params found for: comfort_salon_settings
