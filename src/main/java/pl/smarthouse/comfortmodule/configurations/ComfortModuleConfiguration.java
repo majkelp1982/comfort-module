@@ -48,6 +48,8 @@ public class ComfortModuleConfiguration {
   }
 
   private void setCompareProperties() {
+    compareProcessor.addMap(
+        "functionType", EnumCompareProperties.builder().saveEnabled(false).build());
     Bme280DefaultProperties.setDefaultProperties(compareProcessor, "sensorResponse");
     compareProcessor.addMap(
         "currentOperation", EnumCompareProperties.builder().saveEnabled(true).build());
