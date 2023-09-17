@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import pl.smarthouse.comfortmodule.service.ComfortModuleParamsService;
 import pl.smarthouse.comfortmodule.service.ComfortModuleService;
 import pl.smarthouse.comfortmodule.utils.TimeRangeUtils;
+import pl.smarthouse.sharedobjects.dto.comfort.ComfortModuleParamsDto;
 import pl.smarthouse.sharedobjects.dto.comfort.core.ForcedAirControl;
 import pl.smarthouse.sharedobjects.dto.comfort.core.TemperatureControl;
 import pl.smarthouse.sharedobjects.dto.comfort.core.TimeRange;
@@ -38,7 +39,7 @@ public class ForcedAirAndHeatingService {
         .getBme280Sensor()
         .doOnNext(sensor -> bme280ResponseDto = sensor)
         .flatMap(ignore -> comfortModuleParamsService.getParams())
-        .map(comfortModuleParamsDto -> comfortModuleParamsDto.getTemperatureControl())
+        .map(ComfortModuleParamsDto::getTemperatureControl)
         .doOnNext(this::calculateOperation)
         .subscribe();
   }

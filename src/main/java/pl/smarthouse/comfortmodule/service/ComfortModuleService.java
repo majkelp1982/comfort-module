@@ -2,7 +2,6 @@ package pl.smarthouse.comfortmodule.service;
 
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Service;
 import pl.smarthouse.comfortmodule.configurations.ComfortModuleConfiguration;
 import pl.smarthouse.sharedobjects.dto.comfort.ComfortModuleDto;
@@ -12,7 +11,6 @@ import reactor.core.publisher.Mono;
 
 @Service
 @RequiredArgsConstructor
-@EnableScheduling
 public class ComfortModuleService {
   private final ComfortModuleConfiguration comfortModuleConfiguration;
   private final ModelMapper modelMapper = new ModelMapper();
@@ -33,6 +31,12 @@ public class ComfortModuleService {
     return Mono.just(comfortModuleConfiguration.getComfortModuleDao())
         .doOnNext(comfortModuleDao -> comfortModuleDao.setSensorResponse(bme280Response))
         .thenReturn(bme280Response);
+  }
+
+  public final Mono<Bme280ResponseDto> setBme280Sensor(final Bme280ResponseDto bme280ResponseDto) {
+    return Mono.just(modelMapper.map(bme280ResponseDto, Bme280Response.class))
+        .flatMap(this::setBme280Sensor)
+        .thenReturn(bme280ResponseDto);
   }
 
   public final Mono<ComfortModuleDto> updateAction(final ComfortModuleDto comfortModuleDto) {

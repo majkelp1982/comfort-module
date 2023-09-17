@@ -2,14 +2,12 @@ package pl.smarthouse.comfortmodule.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.ClientResponse;
 import pl.smarthouse.sharedobjects.configuration.ModuleManagerConfiguration;
 import pl.smarthouse.sharedobjects.dto.SettingsDto;
 import reactor.core.publisher.Mono;
 
-@EnableScheduling
 @Service
 @RequiredArgsConstructor
 public class ModuleManagerService {

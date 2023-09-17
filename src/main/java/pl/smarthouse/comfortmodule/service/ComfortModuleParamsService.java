@@ -42,9 +42,10 @@ public class ComfortModuleParamsService {
             paramTableName ->
                 paramsRepository
                     .getParams(paramTableName)
+                    .cache(Duration.ofMinutes(10))
                     .doOnNext(
                         comfortModuleParamsDao ->
-                            log.info("Successfully retrieve params: {}", comfortModuleParamsDao))
+                            log.debug("Successfully retrieve params: {}", comfortModuleParamsDao))
                     .map(
                         comfortModuleParamsDao ->
                             modelMapper.map(comfortModuleParamsDao, ComfortModuleParamsDto.class))
@@ -62,7 +63,6 @@ public class ComfortModuleParamsService {
                                 throwable))
                     .doOnSubscribe(
                         subscription ->
-                            log.info("Get module params from collection: {}", paramTableName)))
-        .cache(Duration.ofMinutes(1));
+                            log.debug("Get module params from collection: {}", paramTableName)));
   }
 }
