@@ -6,8 +6,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
 import pl.smarthouse.comfortmodule.model.dao.ComfortModuleDao;
+import pl.smarthouse.comfortmodule.properties.Esp32ModuleProperties;
 import pl.smarthouse.comfortmodule.repository.ParamsRepository;
 import pl.smarthouse.sharedobjects.enums.Operation;
+import pl.smarthouse.sharedobjects.enums.ZoneName;
+import pl.smarthouse.sharedobjects.utils.FunctionTypeUtil;
 import pl.smarthouse.smartmodule.model.actors.type.bme280.Bme280Response;
 import pl.smarthouse.smartmonitoring.model.EnumCompareProperties;
 import pl.smarthouse.smartmonitoring.model.NumberCompareProperties;
@@ -23,6 +26,7 @@ public class ComfortModuleConfiguration {
   private final CompareProcessor compareProcessor;
   private final MonitoringService monitoringService;
   private final Esp32ModuleConfig esp32ModuleConfig;
+  private final Esp32ModuleProperties esp32ModuleProperties;
   private final ParamsRepository paramsRepository;
   private ComfortModuleDao comfortModuleDao;
 
@@ -33,6 +37,9 @@ public class ComfortModuleConfiguration {
     comfortModuleDao =
         ComfortModuleDao.builder()
             .moduleName(esp32ModuleConfig.getComfortZone().getComfortZoneName())
+            .functionType(
+                FunctionTypeUtil.determinateFunctionType(
+                    ZoneName.valueOf(esp32ModuleProperties.getZoneName())))
             .sensorResponse(sensor)
             .currentOperation(Operation.STANDBY)
             .build();
