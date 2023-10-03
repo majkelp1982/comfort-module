@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import pl.smarthouse.comfortmodule.model.dao.ComfortModuleDao;
 import pl.smarthouse.comfortmodule.service.ComfortModuleService;
 import pl.smarthouse.sharedobjects.dao.ModuleDao;
-import pl.smarthouse.smartmonitoring.model.ErrorPrediction;
+import pl.smarthouse.sharedobjects.dto.error.ErrorPrediction;
 import pl.smarthouse.smartmonitoring.service.ErrorHandlingService;
 
 @Configuration
@@ -39,8 +39,9 @@ public class Bme280ErrorPredictions {
             updateTimeout.test(comfortModuleDao.getSensorResponse().getResponseUpdate());
     errorHandlingService.add(
         new ErrorPrediction(
-            bme280Timeout,
             BME280_TIMEOUT,
+            0,
+            bme280Timeout,
             result -> {
               comfortModuleService
                   .getBme280Sensor()
