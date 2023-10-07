@@ -12,6 +12,7 @@ import pl.smarthouse.sharedobjects.enums.Operation;
 import pl.smarthouse.sharedobjects.enums.ZoneName;
 import pl.smarthouse.sharedobjects.utils.FunctionTypeUtil;
 import pl.smarthouse.smartmodule.model.actors.type.bme280.Bme280Response;
+import pl.smarthouse.smartmonitoring.model.BooleanCompareProperties;
 import pl.smarthouse.smartmonitoring.model.EnumCompareProperties;
 import pl.smarthouse.smartmonitoring.model.NumberCompareProperties;
 import pl.smarthouse.smartmonitoring.properties.defaults.Bme280DefaultProperties;
@@ -48,6 +49,9 @@ public class ComfortModuleConfiguration {
   }
 
   private void setCompareProperties() {
+    compareProcessor.addMap("error", BooleanCompareProperties.builder().saveEnabled(true).build());
+    compareProcessor.addMap(
+        "errorPendingAcknowledge", BooleanCompareProperties.builder().saveEnabled(true).build());
     compareProcessor.addMap(
         "functionType", EnumCompareProperties.builder().saveEnabled(false).build());
     Bme280DefaultProperties.setDefaultProperties(compareProcessor, "sensorResponse");
