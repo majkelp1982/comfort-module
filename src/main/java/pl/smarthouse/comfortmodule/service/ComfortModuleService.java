@@ -20,11 +20,15 @@ public class ComfortModuleService {
         modelMapper.map(comfortModuleConfiguration.getComfortModuleDao(), ComfortModuleDto.class));
   }
 
-  public final Mono<Bme280ResponseDto> getBme280Sensor() {
+  public final Mono<Bme280ResponseDto> getBme280SensorDto() {
     return Mono.just(
             modelMapper.map(
                 comfortModuleConfiguration.getComfortModuleDao(), ComfortModuleDto.class))
         .map(comfortModuleDto -> comfortModuleDto.getSensorResponse());
+  }
+
+  public final Bme280Response getBme280SensorResponse() {
+    return comfortModuleConfiguration.getComfortModuleDao().getSensorResponse();
   }
 
   public final Mono<Bme280Response> setBme280Sensor(final Bme280Response bme280Response) {
