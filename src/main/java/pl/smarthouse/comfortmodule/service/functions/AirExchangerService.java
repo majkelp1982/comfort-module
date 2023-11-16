@@ -10,9 +10,10 @@ import org.springframework.stereotype.Service;
 import pl.smarthouse.comfortmodule.service.ComfortModuleParamsService;
 import pl.smarthouse.comfortmodule.service.ComfortModuleService;
 import pl.smarthouse.comfortmodule.utils.TimeRangeUtils;
+import pl.smarthouse.sharedobjects.dto.comfort.ComfortModuleParamsDto;
 import pl.smarthouse.sharedobjects.dto.comfort.core.AirExchanger;
-import pl.smarthouse.sharedobjects.dto.comfort.core.TimeRange;
 import pl.smarthouse.sharedobjects.dto.core.Bme280ResponseDto;
+import pl.smarthouse.sharedobjects.dto.core.TimeRange;
 import pl.smarthouse.sharedobjects.enums.Operation;
 
 @Service
@@ -33,7 +34,7 @@ public class AirExchangerService {
         .getBme280SensorDto()
         .doOnNext(sensor -> bme280ResponseDto = sensor)
         .flatMap(ignore -> comfortModuleParamsService.getParams())
-        .map(comfortModuleParamsDto -> comfortModuleParamsDto.getAirExchanger())
+        .map(ComfortModuleParamsDto::getAirExchanger)
         .doOnNext(this::calculateOperation)
         .subscribe();
   }

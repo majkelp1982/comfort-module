@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import lombok.experimental.UtilityClass;
-import pl.smarthouse.sharedobjects.dto.comfort.core.TimeRange;
+import pl.smarthouse.sharedobjects.dto.core.TimeRange;
 
 @UtilityClass
 public class TimeRangeUtils {

@@ -16,8 +16,8 @@ import pl.smarthouse.comfortmodule.utils.TimeRangeUtils;
 import pl.smarthouse.sharedobjects.dto.comfort.ComfortModuleParamsDto;
 import pl.smarthouse.sharedobjects.dto.comfort.core.ForcedAirControl;
 import pl.smarthouse.sharedobjects.dto.comfort.core.TemperatureControl;
-import pl.smarthouse.sharedobjects.dto.comfort.core.TimeRange;
 import pl.smarthouse.sharedobjects.dto.core.Bme280ResponseDto;
+import pl.smarthouse.sharedobjects.dto.core.TimeRange;
 import pl.smarthouse.sharedobjects.enums.Operation;
 
 @Service

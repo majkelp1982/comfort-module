@@ -12,7 +12,7 @@ import pl.smarthouse.comfortmodule.service.functions.ForcedAirAndHeatingService;
 import pl.smarthouse.sharedobjects.dto.comfort.core.ForcedAirControl;
 import pl.smarthouse.sharedobjects.dto.comfort.core.HeatingControl;
 import pl.smarthouse.sharedobjects.dto.comfort.core.TemperatureControl;
-import pl.smarthouse.sharedobjects.dto.comfort.core.TimeRange;
+import pl.smarthouse.sharedobjects.dto.core.TimeRange;
 import pl.smarthouse.sharedobjects.enums.Operation;
 
 public class CalculateOperationForcedAirCoolingAndAirConditionTest {
@@ -225,9 +225,7 @@ public class CalculateOperationForcedAirCoolingAndAirConditionTest {
   private TemperatureControl createTemperatureControl() {
     final HeatingControl heatingControl = mockHeatingControl(false, 0.6, 0.5);
     final ForcedAirControl forcedAirControl = mockForcedAirControl(true, true, 0.7, 1.1, 40, 75);
-    final TemperatureControl temperatureControl =
-        mockTemperatureControl(24.5, heatingControl, forcedAirControl);
-    return temperatureControl;
+    return mockTemperatureControl(24.5, heatingControl, forcedAirControl);
   }
 
   private TemperatureControl mockTemperatureControl(
