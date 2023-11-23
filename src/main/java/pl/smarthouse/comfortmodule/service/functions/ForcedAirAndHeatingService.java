@@ -168,17 +168,21 @@ public class ForcedAirAndHeatingService {
   }
 
   private Operation disableIfOutOfTimeRanges(
-      final Operation resultOperation,
+      Operation resultOperation,
       final Set<TimeRange> forcedAirTimeRanges,
       final Set<TimeRange> floorHeatingTimeRanges) {
-    if (Operation.FLOOR_HEATING.equals(resultOperation)) {
-      if (!TimeRangeUtils.inTimeRange(floorHeatingTimeRanges)) {
-        return Operation.STANDBY;
-      }
-    }
     if (List.of(Operation.AIR_HEATING, Operation.AIR_COOLING, Operation.AIR_CONDITION)
         .contains(resultOperation)) {
       if (!TimeRangeUtils.inTimeRange(forcedAirTimeRanges)) {
+        if (Operation.AIR_HEATING.equals(resultOperation)) {
+          resultOperation = Operation.FLOOR_HEATING;
+        } else {
+          return Operation.STANDBY;
+        }
+      }
+    }
+    if (Operation.FLOOR_HEATING.equals(resultOperation)) {
+      if (!TimeRangeUtils.inTimeRange(floorHeatingTimeRanges)) {
         return Operation.STANDBY;
       }
     }
