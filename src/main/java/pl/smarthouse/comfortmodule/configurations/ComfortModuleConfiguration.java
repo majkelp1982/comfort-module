@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import pl.smarthouse.comfortmodule.model.dao.ComfortModuleDao;
 import pl.smarthouse.comfortmodule.properties.Esp32ModuleProperties;
 import pl.smarthouse.comfortmodule.repository.ParamsRepository;
+import pl.smarthouse.sharedobjects.dto.core.enums.State;
 import pl.smarthouse.sharedobjects.enums.Operation;
 import pl.smarthouse.sharedobjects.enums.ZoneName;
 import pl.smarthouse.sharedobjects.utils.FunctionTypeUtil;
@@ -43,6 +44,7 @@ public class ComfortModuleConfiguration {
                     ZoneName.valueOf(esp32ModuleProperties.getZoneName())))
             .sensorResponse(sensor)
             .currentOperation(Operation.STANDBY)
+            .enableTemperatureTimeRanges(State.ON)
             .build();
     monitoringService.setModuleDaoObject(comfortModuleDao);
     setCompareProperties();
@@ -63,5 +65,7 @@ public class ComfortModuleConfiguration {
     compareProcessor.addMap(
         "leftHoldTimeInMinutes",
         NumberCompareProperties.builder().saveEnabled(true).saveTolerance(1).build());
+    compareProcessor.addMap(
+        "enableTemperatureTimeRanges", EnumCompareProperties.builder().saveEnabled(true).build());
   }
 }

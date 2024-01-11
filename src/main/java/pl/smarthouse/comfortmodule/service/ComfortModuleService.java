@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import pl.smarthouse.comfortmodule.configurations.ComfortModuleConfiguration;
 import pl.smarthouse.sharedobjects.dto.comfort.ComfortModuleDto;
 import pl.smarthouse.sharedobjects.dto.core.Bme280ResponseDto;
+import pl.smarthouse.sharedobjects.dto.core.enums.State;
 import pl.smarthouse.smartmodule.model.actors.type.bme280.Bme280Response;
 import reactor.core.publisher.Mono;
 
@@ -24,7 +25,7 @@ public class ComfortModuleService {
     return Mono.just(
             modelMapper.map(
                 comfortModuleConfiguration.getComfortModuleDao(), ComfortModuleDto.class))
-        .map(comfortModuleDto -> comfortModuleDto.getSensorResponse());
+        .map(ComfortModuleDto::getSensorResponse);
   }
 
   public final Bme280Response getBme280SensorResponse() {
@@ -35,12 +36,6 @@ public class ComfortModuleService {
     return Mono.just(comfortModuleConfiguration.getComfortModuleDao())
         .doOnNext(comfortModuleDao -> comfortModuleDao.setSensorResponse(bme280Response))
         .thenReturn(bme280Response);
-  }
-
-  public final Mono<Bme280ResponseDto> setBme280Sensor(final Bme280ResponseDto bme280ResponseDto) {
-    return Mono.just(modelMapper.map(bme280ResponseDto, Bme280Response.class))
-        .flatMap(this::setBme280Sensor)
-        .thenReturn(bme280ResponseDto);
   }
 
   public final Mono<ComfortModuleDto> updateAction(final ComfortModuleDto comfortModuleDto) {
@@ -58,5 +53,15 @@ public class ComfortModuleService {
   public Mono<String> getModuleName() {
     return Mono.just(
         comfortModuleConfiguration.getComfortModuleDao().getModuleName().toLowerCase());
+  }
+
+  public void setEnableTemperatureTimeRanges(boolean enabled) {
+    comfortModuleConfiguration
+        .getComfortModuleDao()
+        .setEnableTemperatureTimeRanges(enabled ? State.ON : State.OFF);
+  }
+
+  public State getEnableTemperatureTimeRanges() {
+    return comfortModuleConfiguration.getComfortModuleDao().getEnableTemperatureTimeRanges();
   }
 }
