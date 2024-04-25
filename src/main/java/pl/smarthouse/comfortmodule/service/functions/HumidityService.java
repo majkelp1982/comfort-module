@@ -31,8 +31,7 @@ public class HumidityService {
     comfortModuleService
         .getBme280SensorDto()
         .doOnNext(sensor -> bme280ResponseDto = sensor)
-        .flatMap(ignore -> comfortModuleParamsService.getParams())
-        .map(comfortModuleParamsDto -> comfortModuleParamsDto.getHumidityAlert())
+        .map(ignore -> comfortModuleParamsService.getParams().getHumidityAlert())
         .doOnNext(this::calculateOperation)
         .subscribe();
   }

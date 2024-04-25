@@ -32,8 +32,7 @@ public class HeatingModuleService {
               if (comfortModuleDto.getSensorResponse().isError()) {
                 return Mono.empty();
               }
-              return comfortModuleParamsService
-                  .getParams()
+              return Mono.just(comfortModuleParamsService.getParams())
                   .flatMap(
                       comfortModuleParamsDto ->
                           createTempZoneDto(comfortModuleDto, comfortModuleParamsDto));
@@ -65,8 +64,8 @@ public class HeatingModuleService {
     }
   }
 
-  private int getZoneNumber(final String moduleName) {
-    switch (moduleName) {
+  private int getZoneNumber(final String type) {
+    switch (type) {
       case "COMFORT_SALON":
         return 0;
       case "COMFORT_PRALNIA":

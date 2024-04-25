@@ -23,7 +23,6 @@ public class ParamsRepository {
   }
 
   public Mono<ComfortModuleParamsDao> getParams(final String paramTableName) {
-    // TODO implement cache to decrease number of mongoDB queries
     return reactiveMongoTemplate
         .findAll(ComfortModuleParamsDao.class, paramTableName)
         .last()

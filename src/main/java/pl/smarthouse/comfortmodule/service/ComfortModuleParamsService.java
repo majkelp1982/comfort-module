@@ -1,10 +1,10 @@
 package pl.smarthouse.comfortmodule.service;
 
-import java.time.Duration;
 import java.util.NoSuchElementException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import pl.smarthouse.comfortmodule.model.dao.ComfortModuleParamsDao;
 import pl.smarthouse.comfortmodule.repository.ParamsRepository;
@@ -18,6 +18,7 @@ public class ComfortModuleParamsService {
   private final ParamsRepository paramsRepository;
   private final ComfortModuleService comfortModuleService;
   private final ModelMapper modelMapper = new ModelMapper();
+  private ComfortModuleParamsDto comfortModuleParamsDto;
 
   public Mono<ComfortModuleParamsDto> saveParams(
       final ComfortModuleParamsDto comfortModuleParamsDto) {
@@ -33,22 +34,33 @@ public class ComfortModuleParamsService {
   }
 
   private Mono<String> getParamTableName() {
-    return comfortModuleService.getModuleName().map(moduleName -> moduleName + "_settings");
+    return comfortModuleService.getType().map(type -> type + "_settings");
   }
 
-  public Mono<ComfortModuleParamsDto> getParams() {
-    return getParamTableName()
+  public ComfortModuleParamsDto getParams() {
+    if (comfortModuleParamsDto == null) {
+      refreshParams();
+    }
+    while (comfortModuleParamsDto == null) {}
+
+    return comfortModuleParamsDto;
+  }
+
+  @Scheduled(initialDelay = 5000, fixedDelay = 60 * 1000)
+  private void refreshParams() {
+    getParamTableName()
         .flatMap(
             paramTableName ->
                 paramsRepository
                     .getParams(paramTableName)
-                    .cache(Duration.ofMinutes(10))
                     .doOnNext(
                         comfortModuleParamsDao ->
                             log.debug("Successfully retrieve params: {}", comfortModuleParamsDao))
                     .map(
                         comfortModuleParamsDao ->
-                            modelMapper.map(comfortModuleParamsDao, ComfortModuleParamsDto.class))
+                            comfortModuleParamsDto =
+                                modelMapper.map(
+                                    comfortModuleParamsDao, ComfortModuleParamsDto.class))
                     .onErrorResume(
                         NoSuchElementException.class,
                         throwable -> {
@@ -63,6 +75,7 @@ public class ComfortModuleParamsService {
                                 throwable))
                     .doOnSubscribe(
                         subscription ->
-                            log.debug("Get module params from collection: {}", paramTableName)));
+                            log.debug("Get module params from collection: {}", paramTableName)))
+        .subscribe();
   }
 }

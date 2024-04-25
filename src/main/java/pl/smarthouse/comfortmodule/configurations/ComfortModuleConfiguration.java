@@ -38,7 +38,7 @@ public class ComfortModuleConfiguration {
     sensor.setError(true);
     comfortModuleDao =
         ComfortModuleDao.builder()
-            .moduleName(esp32ModuleConfig.getComfortZone().getComfortZoneName())
+            .type(esp32ModuleConfig.getComfortZone().getComfortZoneName())
             .functionType(
                 FunctionTypeUtil.determinateFunctionType(
                     ZoneName.valueOf(esp32ModuleProperties.getZoneName())))
