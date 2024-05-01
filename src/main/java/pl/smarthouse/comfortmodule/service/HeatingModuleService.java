@@ -47,7 +47,7 @@ public class HeatingModuleService {
       final ComfortModuleDto comfortModuleDto,
       final ComfortModuleParamsDto comfortModuleParamsDto) {
     final TempZoneDto zoneDto = new TempZoneDto();
-    zoneDto.setZoneNumber(getZoneNumber(comfortModuleDto.getModuleName()));
+    zoneDto.setZoneNumber(getZoneNumber(comfortModuleDto.getType()));
     zoneDto.setTemperature((float) comfortModuleDto.getSensorResponse().getTemperature());
 
     if (List.of(Operation.AIR_HEATING, Operation.FLOOR_HEATING)

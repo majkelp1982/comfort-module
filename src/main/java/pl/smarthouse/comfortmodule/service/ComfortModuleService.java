@@ -51,8 +51,7 @@ public class ComfortModuleService {
   }
 
   public Mono<String> getModuleName() {
-    return Mono.just(
-        comfortModuleConfiguration.getComfortModuleDao().getModuleName().toLowerCase());
+    return Mono.just(comfortModuleConfiguration.getComfortModuleDao().getType().toLowerCase());
   }
 
   public void setEnableTemperatureTimeRanges(boolean enabled) {
