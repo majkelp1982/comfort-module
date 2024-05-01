@@ -40,18 +40,18 @@ public class VentilationModuleService {
 
   public Mono<ZoneDto> sendCommand(final Operation operation, final int requestPower) {
     return comfortModuleService
-        .getModuleName()
+        .getType()
         .flatMap(
-            moduleName ->
+            type ->
                 sendCommandToVentilationModule(
-                    ZoneName.valueOf(prepareZoneName(moduleName)), operation, requestPower));
+                    ZoneName.valueOf(prepareZoneName(type)), operation, requestPower));
   }
 
-  private String prepareZoneName(final String moduleName) {
-    if (moduleName.toUpperCase().contains("COMFORT")) {
-      return moduleName.substring(8).toUpperCase();
+  private String prepareZoneName(final String type) {
+    if (type.toUpperCase().contains("COMFORT")) {
+      return type.substring(8).toUpperCase();
     } else {
-      return moduleName.toUpperCase();
+      return type.toUpperCase();
     }
   }
 
