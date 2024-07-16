@@ -40,7 +40,7 @@ public class VentilationModuleService {
 
   public Mono<ZoneDto> sendCommand(final Operation operation, final int requestPower) {
     return comfortModuleService
-        .getType()
+        .getModuleName()
         .flatMap(
             type ->
                 sendCommandToVentilationModule(

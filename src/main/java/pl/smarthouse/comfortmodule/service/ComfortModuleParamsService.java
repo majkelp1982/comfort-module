@@ -34,7 +34,7 @@ public class ComfortModuleParamsService {
   }
 
   private Mono<String> getParamTableName() {
-    return comfortModuleService.getType().map(type -> type + "_settings");
+    return comfortModuleService.getModuleName().map(type -> type + "_settings");
   }
 
   public ComfortModuleParamsDto getParams() {
