@@ -28,6 +28,7 @@ public class ComfortModuleParamsService {
                 paramsRepository.saveParams(
                     modelMapper.map(comfortModuleParamsDto, ComfortModuleParamsDao.class),
                     paramTableName))
+        .doOnNext(comfortModuleParamsDao -> refreshParams())
         .map(
             comfortModuleParamsDao ->
                 modelMapper.map(comfortModuleParamsDao, ComfortModuleParamsDto.class));

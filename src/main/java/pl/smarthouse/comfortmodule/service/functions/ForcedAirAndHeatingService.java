@@ -1,7 +1,6 @@
 package pl.smarthouse.comfortmodule.service.functions;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
@@ -18,7 +17,6 @@ import pl.smarthouse.sharedobjects.dto.comfort.core.ForcedAirControl;
 import pl.smarthouse.sharedobjects.dto.comfort.core.TemperatureControl;
 import pl.smarthouse.sharedobjects.dto.core.Bme280ResponseDto;
 import pl.smarthouse.sharedobjects.dto.core.TimeRange;
-import pl.smarthouse.sharedobjects.dto.core.enums.State;
 import pl.smarthouse.sharedobjects.enums.Operation;
 
 @Service
@@ -45,8 +43,7 @@ public class ForcedAirAndHeatingService {
   }
 
   public void calculateOperation(final TemperatureControl temperatureControl) {
-    comfortModuleService.setEnableTemperatureTimeRanges(
-        LocalDate.now().isAfter(temperatureControl.getDisableTimeRangesUntilDate()));
+    comfortModuleService.setTimeRangeMode(temperatureControl.getTimeRangeMode());
     // delta temperature
     // + -> to hot
     // - -> to cold
@@ -102,10 +99,12 @@ public class ForcedAirAndHeatingService {
     resultOperation =
         disableIfOutOfTimeRanges(
             resultOperation,
-            comfortModuleService.getEnableTemperatureTimeRanges(),
             TimeRangeUtils.getTimeRangesByDayOfTheWeek(
-                forcedAirControl.getWeekendTimeRanges(), forcedAirControl.getWorkdayTimeRanges()),
+                comfortModuleService.getTimeRangeMode(),
+                forcedAirControl.getWeekendTimeRanges(),
+                forcedAirControl.getWorkdayTimeRanges()),
             TimeRangeUtils.getTimeRangesByDayOfTheWeek(
+                comfortModuleService.getTimeRangeMode(),
                 temperatureControl.getHeatingControl().getWeekendTimeRanges(),
                 temperatureControl.getHeatingControl().getWorkdayTimeRanges()));
 
@@ -172,12 +171,8 @@ public class ForcedAirAndHeatingService {
 
   private Operation disableIfOutOfTimeRanges(
       Operation resultOperation,
-      State enableTemperatureTimeRanges,
       final Set<TimeRange> forcedAirTimeRanges,
       final Set<TimeRange> floorHeatingTimeRanges) {
-    if (State.OFF.equals(enableTemperatureTimeRanges)) {
-      return resultOperation;
-    }
 
     if (List.of(Operation.AIR_HEATING, Operation.AIR_COOLING, Operation.AIR_CONDITION)
         .contains(resultOperation)) {

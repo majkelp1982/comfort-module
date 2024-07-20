@@ -11,6 +11,7 @@ import pl.smarthouse.comfortmodule.service.ComfortModuleParamsService;
 import pl.smarthouse.comfortmodule.service.ComfortModuleService;
 import pl.smarthouse.comfortmodule.utils.TimeRangeUtils;
 import pl.smarthouse.sharedobjects.dto.comfort.core.AirExchanger;
+import pl.smarthouse.sharedobjects.dto.comfort.core.TimeRangeMode;
 import pl.smarthouse.sharedobjects.dto.core.Bme280ResponseDto;
 import pl.smarthouse.sharedobjects.dto.core.TimeRange;
 import pl.smarthouse.sharedobjects.enums.Operation;
@@ -40,7 +41,9 @@ public class AirExchangerService {
   private void calculateOperation(final AirExchanger airExchanger) {
     final Set<TimeRange> timeRanges =
         TimeRangeUtils.getTimeRangesByDayOfTheWeek(
-            airExchanger.getWeekendTimeRanges(), airExchanger.getWorkdayTimeRanges());
+            TimeRangeMode.AUTO,
+            airExchanger.getWeekendTimeRanges(),
+            airExchanger.getWorkdayTimeRanges());
 
     // Calculate operation
     if (!airExchanger.isEnabled() || !TimeRangeUtils.inTimeRange(timeRanges)) {

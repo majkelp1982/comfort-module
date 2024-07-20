@@ -5,8 +5,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import pl.smarthouse.comfortmodule.configurations.ComfortModuleConfiguration;
 import pl.smarthouse.sharedobjects.dto.comfort.ComfortModuleDto;
+import pl.smarthouse.sharedobjects.dto.comfort.core.TimeRangeMode;
 import pl.smarthouse.sharedobjects.dto.core.Bme280ResponseDto;
-import pl.smarthouse.sharedobjects.dto.core.enums.State;
 import pl.smarthouse.smartmodule.model.actors.type.bme280.Bme280Response;
 import reactor.core.publisher.Mono;
 
@@ -54,13 +54,11 @@ public class ComfortModuleService {
     return Mono.just(comfortModuleConfiguration.getComfortModuleDao().getType().toLowerCase());
   }
 
-  public void setEnableTemperatureTimeRanges(boolean enabled) {
-    comfortModuleConfiguration
-        .getComfortModuleDao()
-        .setEnableTemperatureTimeRanges(enabled ? State.ON : State.OFF);
+  public void setTimeRangeMode(TimeRangeMode timeRangeMode) {
+    comfortModuleConfiguration.getComfortModuleDao().setTimeRangeMode(timeRangeMode);
   }
 
-  public State getEnableTemperatureTimeRanges() {
-    return comfortModuleConfiguration.getComfortModuleDao().getEnableTemperatureTimeRanges();
+  public TimeRangeMode getTimeRangeMode() {
+    return comfortModuleConfiguration.getComfortModuleDao().getTimeRangeMode();
   }
 }

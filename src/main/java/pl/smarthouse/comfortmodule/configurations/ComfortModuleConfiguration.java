@@ -67,5 +67,7 @@ public class ComfortModuleConfiguration {
         NumberCompareProperties.builder().saveEnabled(true).saveTolerance(1).build());
     compareProcessor.addMap(
         "enableTemperatureTimeRanges", EnumCompareProperties.builder().saveEnabled(true).build());
+    compareProcessor.addMap(
+        "timeRangeMode", EnumCompareProperties.builder().saveEnabled(true).build());
   }
 }
