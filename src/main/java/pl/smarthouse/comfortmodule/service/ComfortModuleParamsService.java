@@ -40,9 +40,9 @@ public class ComfortModuleParamsService {
 
   public ComfortModuleParamsDto getParams() {
     if (comfortModuleParamsDto == null) {
+      log.info("Configuration not ready");
       refreshParams();
     }
-    while (comfortModuleParamsDto == null) {}
 
     return comfortModuleParamsDto;
   }
@@ -71,7 +71,7 @@ public class ComfortModuleParamsService {
                     .doOnError(
                         throwable ->
                             log.error(
-                                "Error on get params. Error message: {}, Error: {}",
+                                "Error on get params. Error message: {}",
                                 throwable.getMessage(),
                                 throwable))
                     .doOnSubscribe(

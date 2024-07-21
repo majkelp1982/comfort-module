@@ -29,7 +29,8 @@ public class HeatingModuleService {
         .getComfortModule()
         .flatMap(
             comfortModuleDto -> {
-              if (comfortModuleDto.getSensorResponse().isError()) {
+              if (comfortModuleDto.getSensorResponse().isError()
+                  || comfortModuleParamsService.getParams() == null) {
                 return Mono.empty();
               }
               return Mono.just(comfortModuleParamsService.getParams())
@@ -39,7 +40,7 @@ public class HeatingModuleService {
             })
         .doOnNext(tempZoneDto -> log.info("Sending to heating module: {}", tempZoneDto))
         .flatMap(this::sendComfortModuleTemperature)
-        .block();
+        .subscribe();
   }
 
   private Mono<TempZoneDto> createTempZoneDto(
@@ -100,6 +101,11 @@ public class HeatingModuleService {
               } else {
                 return clientResponse.createException().flatMap(Mono::error);
               }
+            })
+        .onErrorResume(
+            throwable -> {
+              log.warn("Heating module connection problem. Message: {}", throwable.getMessage());
+              return Mono.empty();
             });
   }
 }

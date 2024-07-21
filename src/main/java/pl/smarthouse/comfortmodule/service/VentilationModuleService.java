@@ -35,7 +35,7 @@ public class VentilationModuleService {
             comfortModuleDto ->
                 sendCommand(
                     comfortModuleDto.getCurrentOperation(), comfortModuleDto.getRequiredPower()))
-        .block();
+        .subscribe();
   }
 
   public Mono<ZoneDto> sendCommand(final Operation operation, final int requestPower) {
@@ -88,14 +88,19 @@ public class VentilationModuleService {
                                 .queryParam("requestPower", requestPower)
                                 .build())
                     .exchangeToMono(this::processResponse))
-        .doOnError(
+        .onErrorResume(
             throwable -> {
               ventilationModuleConfiguration.resetBaseUrl();
-              log.error(
-                  "Error occurred on sendCommandToVentilationModule. Reason: {}",
-                  throwable.getMessage(),
-                  throwable);
-            });
+              log.warn("Vent module connection problem. Message: {}", throwable.getMessage());
+              return Mono.empty();
+            })
+        .doOnSubscribe(
+            subscription ->
+                log.info(
+                    "Sending command to vent system. Zone name: {}, Operation: {}, required power: {}",
+                    zoneName,
+                    operation,
+                    requestPower));
   }
 
   private Mono<ZoneDto> processResponse(final ClientResponse clientResponse) {

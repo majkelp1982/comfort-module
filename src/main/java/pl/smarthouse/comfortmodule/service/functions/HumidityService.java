@@ -4,18 +4,17 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import pl.smarthouse.comfortmodule.service.ComfortModuleParamsService;
 import pl.smarthouse.comfortmodule.service.ComfortModuleService;
+import pl.smarthouse.sharedobjects.dto.comfort.ComfortModuleParamsDto;
 import pl.smarthouse.sharedobjects.dto.comfort.core.HumidityAlert;
 import pl.smarthouse.sharedobjects.dto.core.Bme280ResponseDto;
 import pl.smarthouse.sharedobjects.enums.Operation;
+import reactor.core.publisher.Mono;
 
 @Service
 @RequiredArgsConstructor
-@EnableScheduling
 @Getter
 public class HumidityService {
   private final ComfortModuleService comfortModuleService;
@@ -26,14 +25,13 @@ public class HumidityService {
   private long leftHoldTimeInMinutes = 0;
   private LocalDateTime humidityOverLimitTimestamp = LocalDateTime.now();
 
-  @Scheduled(fixedDelay = 10000)
-  private void humidityScheduler() {
-    comfortModuleService
+  public Mono<HumidityAlert> scheduler() {
+    return comfortModuleService
         .getBme280SensorDto()
         .doOnNext(sensor -> bme280ResponseDto = sensor)
-        .map(ignore -> comfortModuleParamsService.getParams().getHumidityAlert())
-        .doOnNext(this::calculateOperation)
-        .subscribe();
+        .map(ignore -> comfortModuleParamsService.getParams())
+        .map(ComfortModuleParamsDto::getHumidityAlert)
+        .doOnNext(this::calculateOperation);
   }
 
   private void calculateOperation(final HumidityAlert humidityAlert) {

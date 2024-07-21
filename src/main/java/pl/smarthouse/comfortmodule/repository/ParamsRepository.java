@@ -1,5 +1,6 @@
 package pl.smarthouse.comfortmodule.repository;
 
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
@@ -25,7 +26,20 @@ public class ParamsRepository {
   public Mono<ComfortModuleParamsDao> getParams(final String paramTableName) {
     return reactiveMongoTemplate
         .findAll(ComfortModuleParamsDao.class, paramTableName)
-        .last()
-        .doOnSubscribe(subscription -> log.info("Getting params from table: {}", paramTableName));
+        .collectList()
+        .flatMap(this::getFirstConfiguration)
+        .doOnSubscribe(subscription -> log.info("Getting params from table: {}", paramTableName))
+        .doOnTerminate(() -> log.info("getParams finished"));
+  }
+
+  private Mono<ComfortModuleParamsDao> getFirstConfiguration(
+      List<ComfortModuleParamsDao> comfortModuleParamsDaos) {
+    if (comfortModuleParamsDaos.isEmpty()) {
+      log.warn("Configuration has not been found");
+      return Mono.empty();
+    } else {
+      log.info("Found {} configuration(s). Get first", comfortModuleParamsDaos.size());
+      return Mono.just(comfortModuleParamsDaos.get(0));
+    }
   }
 }

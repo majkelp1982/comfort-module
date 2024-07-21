@@ -7,21 +7,20 @@ import java.util.Set;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import pl.smarthouse.comfortmodule.service.ComfortModuleParamsService;
 import pl.smarthouse.comfortmodule.service.ComfortModuleService;
 import pl.smarthouse.comfortmodule.utils.TimeRangeUtils;
+import pl.smarthouse.sharedobjects.dto.comfort.ComfortModuleParamsDto;
 import pl.smarthouse.sharedobjects.dto.comfort.core.ForcedAirControl;
 import pl.smarthouse.sharedobjects.dto.comfort.core.TemperatureControl;
 import pl.smarthouse.sharedobjects.dto.core.Bme280ResponseDto;
 import pl.smarthouse.sharedobjects.dto.core.TimeRange;
 import pl.smarthouse.sharedobjects.enums.Operation;
+import reactor.core.publisher.Mono;
 
 @Service
 @RequiredArgsConstructor
-@EnableScheduling
 @Getter
 @Setter
 public class ForcedAirAndHeatingService {
@@ -32,14 +31,13 @@ public class ForcedAirAndHeatingService {
   private Operation requiredOperation = Operation.STANDBY;
   private int requiredPower = 0;
 
-  @Scheduled(fixedDelay = 10000)
-  private void forcedAirScheduler() {
-    comfortModuleService
+  public Mono<TemperatureControl> scheduler() {
+    return comfortModuleService
         .getBme280SensorDto()
         .doOnNext(sensor -> bme280ResponseDto = sensor)
-        .map(ignore -> comfortModuleParamsService.getParams().getTemperatureControl())
-        .doOnNext(this::calculateOperation)
-        .subscribe();
+        .map(ignore -> comfortModuleParamsService.getParams())
+        .map(ComfortModuleParamsDto::getTemperatureControl)
+        .doOnNext(this::calculateOperation);
   }
 
   public void calculateOperation(final TemperatureControl temperatureControl) {
