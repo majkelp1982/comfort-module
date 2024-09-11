@@ -79,4 +79,8 @@ public class ComfortModuleParamsService {
                             log.debug("Get module params from collection: {}", paramTableName)))
         .subscribe();
   }
+
+  public void humidityForceTrigger() {
+    getParams().getHumidityAlert().setForceTrigger(true);
+  }
 }

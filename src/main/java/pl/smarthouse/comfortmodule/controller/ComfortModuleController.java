@@ -21,6 +21,11 @@ public class ComfortModuleController {
     return comfortModuleService.getComfortModule();
   }
 
+  @PostMapping("/humidityalert/trigger")
+  public void humidityAlertTrigger() {
+    comfortModuleParamsService.humidityForceTrigger();
+  }
+
   @PostMapping("/params")
   public Mono<ComfortModuleParamsDto> saveParams(
       @RequestBody final ComfortModuleParamsDto comfortModuleSettingsDto) {

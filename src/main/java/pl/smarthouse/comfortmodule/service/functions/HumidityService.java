@@ -43,9 +43,11 @@ public class HumidityService {
     }
 
     // Calculate operation
-    if (bme280ResponseDto.getHumidity() > humidityAlert.getMaxHumidity()) {
+    if (bme280ResponseDto.getHumidity() > humidityAlert.getMaxHumidity()
+        || humidityAlert.isForceTrigger()) {
       requiredOperation = Operation.HUMIDITY_ALERT;
       humidityOverLimitTimestamp = LocalDateTime.now();
+      humidityAlert.setForceTrigger(false);
     }
 
     leftHoldTimeInMinutes =
