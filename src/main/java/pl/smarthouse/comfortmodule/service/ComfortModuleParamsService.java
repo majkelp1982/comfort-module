@@ -81,6 +81,7 @@ public class ComfortModuleParamsService {
   }
 
   public void humidityForceTrigger() {
+    log.info("Humidity alert is triggered externally");
     getParams().getHumidityAlert().setForceTrigger(true);
   }
 }
